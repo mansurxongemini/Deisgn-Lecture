@@ -1,0 +1,700 @@
+/* ==========================================================================
+   A4 PRINT-GRADE DOCUMENT STYLES
+   - Format: A4 portrait (210mm x 297mm)
+   - Margins: 16-18mm
+   - Body font: 10.5-11pt, line-height ~1.45
+   - Native CSS fragmentation: break-inside: avoid, break-after: avoid
+   - Full width tables with repeating thead
+   - Compact blocks, continuous section flow
+   ========================================================================== */
+
+.a4-document-root {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* Har bir sahifa — qat'iy A4 o'lchamida (210mm x 297mm = 794x1123px at 96dpi) */
+.a4-sheet {
+  width: 210mm !important;
+  max-width: 100% !important;
+  min-height: 297mm !important;
+  height: 297mm !important;
+  max-height: 297mm !important;
+  padding: 16mm !important;
+  box-sizing: border-box !important;
+  flex: none !important;
+  background: var(--bg-surface, #ffffff);
+  color: var(--text-main, #0f172a);
+  font-family: var(--font-serif, 'Lora', Georgia, serif);
+  font-size: 10.5pt;
+  line-height: 1.45;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(0, 0, 0, 0.05);
+  border-radius: 2px;
+  position: relative;
+  content-visibility: auto;
+  contain-intrinsic-size: 210mm 297mm;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 0 auto 24px auto;
+  overflow: hidden;
+  orphans: 3;
+  widows: 3;
+}
+
+.a4-sheet:last-child {
+  margin-bottom: 0;
+}
+
+.a4-sheet-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6pt;
+  overflow: hidden;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+.a4-sheet-footer {
+  flex-shrink: 0;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  font-size: 8.5pt;
+  color: var(--text-muted, #94a3b8);
+  border-top: 1px solid var(--border-subtle, #f1f5f9);
+  padding-top: 4pt;
+  margin-top: 4pt;
+}
+
+.a4-sheet-page-num {
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+/* O'lchamlarni hisoblash uchun yashirin konteyner */
+.a4-measure-host {
+  position: absolute;
+  top: -99999px;
+  left: -99999px;
+  width: 210mm;
+  padding: 16mm;
+  box-sizing: border-box;
+  visibility: hidden;
+  pointer-events: none;
+  z-index: -100;
+  opacity: 0;
+}
+
+/* 1. Muqova / Hujjat Bosh Qismi (A4 ixcham shaklda) */
+.a4-doc-cover {
+  border-bottom: 2px solid var(--accent, #1e3a8a);
+  padding-bottom: 12pt;
+  margin-bottom: 16pt;
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+
+.a4-cover-top-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 9pt;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-muted, #64748b);
+  margin-bottom: 6pt;
+}
+
+.a4-doc-title {
+  font-family: var(--font-heading, 'Lora', serif);
+  font-size: 20pt;
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--text-main, #0f172a);
+  margin: 0 0 6pt 0;
+}
+
+.a4-doc-subtitle {
+  font-size: 11pt;
+  color: var(--text-muted, #475569);
+  line-height: 1.4;
+  margin: 0 0 8pt 0;
+  font-style: italic;
+}
+
+.a4-cover-bottom-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 9.5pt;
+  color: var(--text-muted, #64748b);
+  padding-top: 4pt;
+  border-top: 1px solid var(--border-subtle, #e2e8f0);
+}
+
+/* 2. Yagona Mundarija (TOC) */
+.a4-toc-block {
+  background: var(--bg-surface-elevated, #f8fafc);
+  border: 1px solid var(--border-subtle, #e2e8f0);
+  border-radius: 4px;
+  padding: 10pt 14pt;
+  margin-bottom: 16pt;
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+
+.a4-toc-header {
+  display: flex;
+  align-items: center;
+  gap: 6pt;
+  margin-bottom: 8pt;
+  color: var(--accent, #1e3a8a);
+}
+
+.a4-toc-title {
+  font-family: var(--font-heading, 'Lora', serif);
+  font-size: 12pt;
+  font-weight: 700;
+  margin: 0;
+}
+
+.a4-toc-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4pt;
+}
+
+.a4-toc-item {
+  margin: 0;
+}
+
+.a4-toc-link {
+  display: flex;
+  align-items: baseline;
+  text-decoration: none;
+  color: var(--text-main, #0f172a);
+  font-size: 9.5pt;
+  transition: color 0.15s ease;
+}
+
+.a4-toc-link:hover {
+  color: var(--accent, #1e3a8a);
+}
+
+.a4-toc-item-title {
+  flex-shrink: 0;
+  max-width: 80%;
+  font-weight: 500;
+}
+
+.a4-toc-num {
+  font-weight: 700;
+  color: var(--accent, #1e3a8a);
+  margin-right: 4pt;
+}
+
+.a4-toc-dots {
+  flex-grow: 1;
+  border-bottom: 1px dotted var(--border-subtle, #94a3b8);
+  margin: 0 6pt;
+  min-width: 16pt;
+}
+
+.a4-toc-page-marker {
+  flex-shrink: 0;
+  font-size: 8.5pt;
+  font-weight: 600;
+  color: var(--text-muted, #64748b);
+}
+
+/* 3. Bo'limlar oqimi (Continuous section stream) */
+.a4-content-stream {
+  display: flex;
+  flex-direction: column;
+  gap: 12pt;
+}
+
+.a4-section {
+  break-inside: auto;
+  page-break-inside: auto;
+  margin-bottom: 10pt;
+}
+
+.a4-section-header {
+  break-after: avoid;
+  page-break-after: avoid;
+  margin-top: 10pt;
+  margin-bottom: 6pt;
+  padding-bottom: 3pt;
+  border-bottom: 1.5px solid var(--accent, #1e3a8a);
+}
+
+.a4-section-title {
+  font-family: var(--font-heading, 'Lora', serif);
+  font-size: 13.5pt;
+  font-weight: 700;
+  color: var(--text-main, #0f172a);
+  margin: 0 0 2pt 0;
+}
+
+.a4-sec-num {
+  color: var(--accent, #1e3a8a);
+}
+
+.a4-section-subtitle {
+  font-size: 9.5pt;
+  color: var(--text-muted, #64748b);
+  margin: 0;
+  font-style: italic;
+}
+
+.a4-section-body {
+  display: flex;
+  flex-direction: column;
+  gap: 6pt;
+}
+
+/* 4. Bloklarning ixcham A4 dizayni */
+.a4-section-body .block-container {
+  break-inside: avoid;
+  page-break-inside: avoid;
+  margin-bottom: 4pt;
+}
+
+/* Paragraflar */
+.a4-section-body .study-text {
+  font-family: var(--font-serif, 'Lora', Georgia, serif);
+  font-size: 10.5pt;
+  line-height: 1.45;
+  margin: 0 0 4pt 0;
+  color: var(--text-main, #1e293b);
+  text-align: justify;
+}
+
+/* Ro'yxat */
+.a4-section-body .study-list {
+  margin: 4pt 0 6pt 0;
+  padding-left: 18pt;
+  font-size: 10pt;
+  line-height: 1.42;
+}
+
+.a4-section-body .study-list-item {
+  margin-bottom: 2pt;
+}
+
+/* Ta'rif (Inline) */
+.def-compact-container {
+  margin: 3pt 0;
+}
+
+.def-inline-box {
+  font-size: 10pt;
+  line-height: 1.42;
+  padding: 3pt 6pt;
+  background: rgba(180, 83, 9, 0.05);
+  border-left: 3px solid var(--accent-gold, #b45309);
+  border-radius: 0 3px 3px 0;
+}
+
+.def-term {
+  color: var(--accent-gold, #b45309);
+}
+
+.def-body {
+  color: var(--text-main, #1e293b);
+}
+
+.def-source-tag {
+  font-size: 8.5pt;
+  color: var(--text-muted, #64748b);
+  font-style: italic;
+}
+
+/* Qonun Normasi (Slim Plaque) */
+.a4-section-body .norm-card {
+  border: 1px solid var(--border-subtle, #cbd5e1);
+  border-left: 3.5px solid var(--accent, #1e3a8a);
+  background: var(--bg-surface-elevated, #f8fafc);
+  border-radius: 4px;
+  padding: 6pt 8pt;
+  margin: 4pt 0;
+}
+
+.a4-section-body .norm-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 6pt;
+  margin-bottom: 3pt;
+}
+
+.a4-section-body .norm-badge {
+  font-size: 8.5pt;
+  font-weight: 700;
+  padding: 1.5pt 5pt;
+}
+
+.a4-section-body .norm-body {
+  font-size: 10pt;
+  line-height: 1.4;
+  margin-bottom: 3pt;
+}
+
+.a4-section-body .norm-footer {
+  display: flex;
+  justify-content: space-between;
+  font-size: 8.5pt;
+  color: var(--text-muted, #64748b);
+  border-top: 1px dotted var(--border-subtle, #e2e8f0);
+  padding-top: 2pt;
+}
+
+/* Jadvallar (Full width, auto layout, thead repeat, isolated horizontal scroll) */
+.a4-section-body .table-wrapper {
+  margin: 6pt 0;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  box-sizing: border-box;
+  -webkit-overflow-scrolling: touch;
+}
+
+.a4-section-body .study-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: auto;
+  font-size: 9.5pt;
+  line-height: 1.35;
+}
+
+.a4-section-body .study-table thead {
+  display: table-header-group;
+}
+
+.a4-section-body .study-table tr {
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+
+.a4-section-body .study-table th {
+  background: var(--bg-surface-elevated, #f1f5f9);
+  color: var(--text-main, #0f172a);
+  font-weight: 600;
+  padding: 4pt 6pt;
+  border: 1px solid var(--border-subtle, #cbd5e1);
+  text-align: left;
+}
+
+.a4-section-body .study-table td {
+  padding: 4pt 6pt;
+  border: 1px solid var(--border-subtle, #cbd5e1);
+  color: var(--text-main, #1e293b);
+  vertical-align: top;
+}
+
+/* Kod bloklari (Faqat kod va jadvallarda gorizontal aylantirish) */
+.a4-section-body pre,
+.a4-section-body .code-block-wrapper,
+.a4-section-body code {
+  max-width: 100%;
+  overflow-x: auto;
+  box-sizing: border-box;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Savol-Javob (Takrorlash savollari guruhi) */
+.qa-group-container {
+  background: var(--bg-surface-elevated, #f8fafc);
+  border: 1px solid var(--border-subtle, #e2e8f0);
+  border-radius: 4px;
+  padding: 6pt 10pt;
+  margin: 6pt 0;
+}
+
+.qa-group-header {
+  display: flex;
+  align-items: center;
+  gap: 5pt;
+  color: var(--accent, #1e3a8a);
+  margin-bottom: 5pt;
+  padding-bottom: 3pt;
+  border-bottom: 1px solid var(--border-subtle, #e2e8f0);
+}
+
+.qa-group-icon {
+  flex-shrink: 0;
+}
+
+.qa-group-title {
+  font-size: 10pt;
+  font-weight: 700;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.qa-group-list {
+  display: flex;
+  flex-direction: column;
+  gap: 5pt;
+}
+
+.qa-group-item {
+  padding-bottom: 4pt;
+  border-bottom: 1px dashed var(--border-subtle, #e2e8f0);
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+
+.qa-group-item:last-child {
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.qa-compact-q {
+  font-size: 9.8pt;
+  color: var(--text-main, #0f172a);
+  margin-bottom: 2pt;
+}
+
+.qa-q-label {
+  color: var(--accent, #1e3a8a);
+}
+
+.qa-compact-a {
+  font-size: 9.5pt;
+  line-height: 1.4;
+  color: var(--text-main, #334155);
+}
+
+.qa-a-label {
+  font-weight: 600;
+  color: var(--text-muted, #475569);
+}
+
+.qa-compact-hint {
+  font-size: 8.5pt;
+  color: var(--text-muted, #64748b);
+  font-style: italic;
+}
+
+/* Yagona savol-javob */
+.qa-compact-box {
+  border-left: 3px solid var(--accent, #1e3a8a);
+  padding: 3pt 6pt;
+  background: rgba(30, 58, 138, 0.03);
+  margin: 4pt 0;
+}
+
+/* Eslatma / Ogohlantirish (Slim Callout) */
+.a4-section-body .study-note {
+  border-left: 3px solid var(--accent-gold, #b45309);
+  background: rgba(180, 83, 9, 0.04);
+  padding: 4pt 8pt;
+  margin: 4pt 0;
+  border-radius: 0 4px 4px 0;
+  font-size: 9.5pt;
+  line-height: 1.4;
+}
+
+.a4-section-body .note-content .note-title {
+  font-size: 9.5pt;
+  font-weight: 700;
+  margin: 0 0 2pt 0;
+}
+
+.a4-section-body .note-content .note-text {
+  font-size: 9.5pt;
+  line-height: 1.4;
+  margin: 0;
+}
+
+/* Taqqoslash (2-column table) */
+.a4-section-body .compare-card {
+  margin: 5pt 0;
+}
+
+.a4-section-body .compare-grid {
+  display: grid;
+  grid-template-columns: repeat(var(--col-count, 2), 1fr);
+  gap: 6pt;
+}
+
+.a4-section-body .compare-column {
+  border: 1px solid var(--border-subtle, #cbd5e1);
+  border-radius: 4px;
+  padding: 5pt 7pt;
+  background: var(--bg-surface, #fff);
+}
+
+.a4-section-body .compare-col-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--border-subtle, #e2e8f0);
+  padding-bottom: 3pt;
+  margin-bottom: 3pt;
+}
+
+.a4-section-body .compare-col-title {
+  font-size: 9.5pt;
+  font-weight: 700;
+  margin: 0;
+}
+
+.a4-section-body .compare-points-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2pt;
+}
+
+.a4-section-body .compare-point-item {
+  display: flex;
+  align-items: baseline;
+  gap: 4pt;
+  font-size: 9pt;
+  line-height: 1.35;
+}
+
+/* Kazus (Case) */
+.a4-section-body .case-card {
+  border: 1px solid var(--border-subtle, #cbd5e1);
+  border-left: 3.5px solid var(--accent, #1e3a8a);
+  border-radius: 4px;
+  padding: 6pt 8pt;
+  margin: 5pt 0;
+  background: var(--bg-surface-elevated, #f8fafc);
+}
+
+.a4-section-body .case-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4pt;
+  padding-bottom: 3pt;
+  border-bottom: 1px solid var(--border-subtle, #e2e8f0);
+}
+
+.a4-section-body .case-name {
+  font-size: 10pt;
+  font-weight: 700;
+  margin: 0;
+  color: var(--text-main, #0f172a);
+}
+
+.a4-section-body .case-step {
+  display: flex;
+  align-items: baseline;
+  gap: 6pt;
+  margin-bottom: 3pt;
+}
+
+.a4-section-body .case-step-label {
+  font-size: 8.5pt;
+  font-weight: 700;
+  color: var(--accent, #1e3a8a);
+  flex-shrink: 0;
+  min-width: 90pt;
+}
+
+.a4-section-body .case-step-text {
+  font-size: 9.5pt;
+  line-height: 1.4;
+  margin: 0;
+  color: var(--text-main, #1e293b);
+}
+
+/* ==========================================================================
+   CHOP ETISH (@media print) QOIDALARI
+   ========================================================================== */
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 0;
+  }
+
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+    font-size: 10.5pt;
+  }
+
+  .a4-document-root {
+    width: 210mm !important;
+    max-width: none !important;
+    min-height: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+  }
+
+  .a4-sheet {
+    width: 210mm !important;
+    min-height: 297mm !important;
+    height: 297mm !important;
+    max-height: 297mm !important;
+    margin: 0 !important;
+    padding: 16mm !important;
+    box-sizing: border-box !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    break-after: page !important;
+    page-break-after: always !important;
+    content-visibility: visible !important;
+    overflow: hidden !important;
+  }
+
+  .a4-sheet:last-child {
+    break-after: auto !important;
+    page-break-after: auto !important;
+  }
+
+  .a4-measure-host {
+    display: none !important;
+  }
+
+  .a4-scaling-sizer,
+  .a4-scaling-wrapper {
+    width: 210mm !important;
+    min-height: auto !important;
+    height: auto !important;
+    transform: none !important;
+    position: static !important;
+    margin: 0 !important;
+  }
+
+  /* No-print elementlarini butunlay yashirish */
+  .no-print,
+  .app-header,
+  .editor-column,
+  .sidebar,
+  .floating-toolbar,
+  .card-nav-bar,
+  .design-panel,
+  .screen-reader-toc-sticky,
+  .output-view-mode-bar,
+  .a4-scale-controls {
+    display: none !important;
+  }
+
+  .print-export-host {
+    display: block !important;
+    position: static !important;
+    width: 100% !important;
+  }
+}

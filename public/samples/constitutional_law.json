@@ -1,0 +1,151 @@
+{
+  "version": "1.0",
+  "id": "doc-konstitutsiya-2026",
+  "title": "O‘zbekiston Respublikasi Konstitutsiyaviy Huquqi",
+  "subtitle": "Inson qadr-qimmati, odil sudlov va konstitutsiyaviy nazorat tizimi",
+  "author": "Yuridik fanlar fakulteti",
+  "language": "uz",
+  "theme": "classic",
+  "cover": {
+    "enabled": true,
+    "institution": "Toshkent Davlat Yuridik Universiteti",
+    "year": "2026",
+    "subtitle": "Talabalar va magistrantlar uchun mukammal o‘quv qo‘llanmasi"
+  },
+  "toc": true,
+  "sections": [
+    {
+      "id": "sec-inson-huquqlari",
+      "title": "1-bob. Inson qadri va odil sudlov kafolatlari",
+      "subtitle": "Yangi tahrirdagi Konstitutsiyaning ustuvor prinsiplari",
+      "layout": "1-col",
+      "pageBreak": false,
+      "blocks": [
+        {
+          "id": "blk-kirish",
+          "type": "text",
+          "lead": true,
+          "text": "Yangi tahrirdagi Konstitutsiya inson huquqlarining ustuvorligi hamda **\"inson — jamiyat — davlat\"** tamoyilini bosh mezon sifatida mustahkamladi. Davlat organlarining fuqarolar bilan o‘zaro munosabatlarida har qanday noaniqliklar ==inson foydasiga== talqin qilinishi shart."
+        },
+        {
+          "id": "blk-norm-13",
+          "type": "norm",
+          "number": "13-modda",
+          "title": "Inson sha’ni va qadr-qimmati daxlsizligi",
+          "text": "O‘zbekiston Respublikasida inson, uning hayoti, erkinligi, sha’ni, qadr-qimmati va boshqa ajralmas huquqlari oliy qadriyat hisoblanadi. Insonning huquq va erkinliklari bevosita amal qiladi.",
+          "source": "O‘zbekiston Respublikasi Konstitutsiyasi",
+          "effectiveDate": "01.05.2023"
+        },
+        {
+          "id": "blk-ogohlantirish",
+          "type": "note",
+          "variant": "warning",
+          "title": "Muhim protsessual qoida",
+          "text": "Qonunni buzgan holda olingan dalillardan odil sudlovni amalga oshirishda foydalanishga **qat’iyan yo‘l qo‘yilmaydi**. Ular hech qanday yuridik kuchga ega emas."
+        },
+        {
+          "id": "blk-jadval-kafolat",
+          "type": "table",
+          "title": "Shaxsiy va protsessual kafolatlar tizimi",
+          "headers": ["Huquqiy institut", "Qo‘llanish doirasi", "Qonuniy asosi"],
+          "rows": [
+            ["Xabeas korpus", "Qamoqqa olishga sanksiya berish sudlar vakolatida", "Konstitutsiya 27-modda"],
+            ["Miranda qoidasi", "Ushlash paytida sukut saqlash va himoyachi huquqi", "Konstitutsiya 28-modda"],
+            ["Aybsizlik prezumpsiyasi", "Aybi qonuniy kuchga kirgan sud hukmi bilan isbotlanmaguncha", "Konstitutsiya 28-modda"]
+          ]
+        },
+        {
+          "id": "blk-case-102",
+          "type": "case",
+          "title": "Sud amaliyoti: Noqonuniy tintuv va dalillarning nomaqbulligi",
+          "court": "Toshkent shahar sudining jinoyat ishlari bo‘yicha sudlov hay’ati",
+          "facts": "Tergov organi fuqaro A.ning xonadonida sud sanksiyasisiz hamda xolislar ishtirokisiz kechiktirib bo‘lmaydigan holat vaji bilan tintuv o‘tkazib, ashyoviy dalillarni olgan. Biroq holatning shoshilinchligini tasdiqlovchi dalillar taqdim etilmagan.",
+          "rule": "Konstitutsiyaning 31-moddasiga muvofiq, turar joy daxlsizdir. Hech kim sudning qarorisiz turar joyga kirishi yoki tintuv o‘tkazishi mumkin emas.",
+          "conclusion": "Sud tergov organi tomonidan olingan barcha ashyoviy dalillarni nomaqbul deb topdi va ularni ayblov asosidan chiqarib tashladi. Sudlanuvchi oqlandi."
+        },
+        {
+          "id": "blk-qa-1",
+          "type": "qa",
+          "question": "Miranda qoidasining asosiy mohiyati nimadan iborat?",
+          "answer": "Shaxs ushlangan zahoti unga sukut saqlash huquqi, aytgan har qanday gapi sudda o‘ziga qarshi ishlatilishi mumkinligi hamda advokat xizmatidan foydalanish huquqi tushuntirilishi shart.",
+          "hint": "Ushlangan shaxsning dastlabki daqiqalardagi kafolatlari.",
+          "category": "Protsessual kafolatlar"
+        },
+        {
+          "id": "blk-def-prezump",
+          "type": "definition",
+          "term": "Aybsizlik prezumpsiyasi",
+          "definition": "Shaxsning aybi qonunda nazarda tutilgan tartibda oshkora sud muhokamasi yo‘li bilan isbotlanmaguncha va qonuniy kuchga kirgan sud hukmi bilan aniqlanmaguncha u aybsiz hisoblanadi.",
+          "source": "Konstitutsiya 28-modda"
+        },
+        {
+          "id": "blk-compare-sud",
+          "type": "compare",
+          "items": [
+            {
+              "title": "Konstitutsiyaviy Sud",
+              "badge": "Konstitutsiyaviy nazorat",
+              "points": [
+                "Qonunlarning Konstitutsiyaga muvofiqligini tekshiradi",
+                "Fuqarolarning konstitutsiyaviy shikoyatlarini ko‘rib chiqadi",
+                "Qarorlari qat’iy va ustidan shikoyat qilinmaydi"
+              ]
+            },
+            {
+              "title": "Oliy Sud",
+              "badge": "Umumiy yurisdiksiya",
+              "points": [
+                "Fuqarolik, jinoyat, iqtisodiy va ma’muriy ishlarni ko‘radi",
+                "Quyi sudlar ustidan nazorat va sud amaliyotini umumlashtiradi",
+                "Sud qarorlarini kassatsiya va taftish tartibida qayta ko‘radi"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "blk-flow-shikoyat",
+          "type": "flow",
+          "steps": [
+            {
+              "title": "Barcha sud bosqichlarini o‘tish",
+              "description": "Umumiy yurisdiksiya sudlarida ishni ko‘rib chiqish to‘liq tugallangan bo‘lishi lozim"
+            },
+            {
+              "title": "Konstitutsiyaviy shikoyat kiritish",
+              "description": "Qo‘llanilgan qonun Konstitutsiyaviy huquqlarni buzgan deb hisoblangan taqdirda beriladi"
+            },
+            {
+              "title": "Sudlov hay’atida ko‘rib chiqish",
+              "description": "Ish materiallari Konstitutsiyaviy sud sudyalari tomonidan ochiq majlisda tekshiriladi"
+            },
+            {
+              "title": "Yakuniy qaror e’lon qilinishi",
+              "description": "Qonun qoidasi konstitutsiyaga zid deb topilsa, o‘z yuridik kuchini yo‘qotadi"
+            }
+          ]
+        },
+        {
+          "id": "blk-timeline-islohot",
+          "type": "timeline",
+          "events": [
+            {
+              "date": "1992-yil 8-dekabr",
+              "title": "Birinchi Konstitutsiyaning qabul qilinishi",
+              "description": "Mustaqil O‘zbekiston Respublikasining ilk Asosiy Qonuni qabul qilindi."
+            },
+            {
+              "date": "2017-yil",
+              "title": "Harakatlar strategiyasi va sud islohoti",
+              "description": "Sudlar mustaqilligi va sud-huquq sohasidagi keng qamrovli islohotlar boshlandi."
+            },
+            {
+              "date": "2023-yil 30-aprel",
+              "title": "Yangi tahrirdagi Konstitutsiya referendumi",
+              "description": "Xalq ovozi bilan inson huquqlari kafolatlari 3 barobarga kuchaytirilgan yangi tahrir qabul qilindi."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

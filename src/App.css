@@ -1,0 +1,728 @@
+/* ==========================================================================
+   YURIST STUDIO — ASOSIY ILOVA MAKETI VA SEMANTIK USLUBLARI
+   Quiet luxury, legal editorial. Tinch, aniq va ishonchli.
+   ========================================================================== */
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  font-family: var(--font-sans, 'Inter', -apple-system, sans-serif);
+  color: var(--ink);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  background: var(--bg);
+  color: var(--ink);
+}
+
+/* ==========================================================================
+   YUQORI NAVIGATSIYA PANELI (TOPBAR / NAVBAR) — 56px, Yagona gorizontal asosi
+   ========================================================================== */
+.app-navbar {
+  height: 56px;
+  min-height: 56px;
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(12px) saturate(180%);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--space-4);
+  box-sizing: border-box;
+  flex-shrink: 0;
+  z-index: 80;
+  gap: var(--space-4);
+}
+
+.brand-section {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  overflow: hidden;
+  min-width: 0;
+}
+
+.breadcrumb-nav {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--ui-font-size-13);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.crumb-item {
+  color: var(--ink-2);
+}
+
+.crumb-sep {
+  color: var(--ink-3);
+  font-size: var(--ui-font-size-11);
+}
+
+.crumb-current {
+  font-weight: 600;
+  color: var(--ink);
+}
+
+/* Save Status Indicator: Neytral matn va kichik yashil nuqta */
+.crumb-saved-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--ui-font-size-12);
+  color: var(--ink-2);
+  margin-left: 10px;
+  font-weight: 500;
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+.save-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: var(--radius-pill);
+  display: inline-block;
+}
+
+.save-dot.saved {
+  background-color: var(--success);
+}
+
+.save-dot.saving {
+  background-color: var(--warning);
+  animation: pulseSaving 1s infinite alternate;
+}
+
+.save-dot.error {
+  background-color: var(--danger);
+}
+
+.save-dot.unsaved {
+  background-color: var(--ink-3);
+}
+
+.save-dot.conflict {
+  background-color: var(--danger);
+  animation: pulseSaving 0.8s infinite alternate;
+}
+
+.crumb-saved-badge.error-btn {
+  color: var(--danger);
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.crumb-saved-badge.conflict-btn {
+  color: var(--danger);
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.conflict-banner {
+  background-color: var(--warning-bg);
+  border-bottom: 1px solid var(--warning-border);
+  color: var(--ink);
+  padding: var(--space-2) var(--space-4);
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-size: var(--ui-font-size-13);
+  z-index: 10;
+}
+
+.conflict-banner .conflict-actions {
+  display: flex;
+  gap: 8px;
+  margin-left: auto;
+}
+
+@keyframes pulseSaving {
+  from { opacity: 0.4; transform: scale(0.85); }
+  to { opacity: 1; transform: scale(1.15); }
+}
+
+/* Segmented Control (Yozish | Ko‘rish | Ikkalasi) */
+.view-mode-pill {
+  display: flex;
+  align-items: center;
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  padding: var(--space-1);
+  border-radius: var(--radius-md);
+  gap: 2px;
+}
+
+.mode-tab {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 28px;
+  padding: var(--space-1) var(--space-3);
+  font-size: var(--ui-font-size-12);
+  font-weight: 500;
+  color: var(--ink-2);
+  border: none;
+  background: none;
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+  transition: all var(--motion-fast);
+  user-select: none;
+  min-width: 60px;
+  text-align: center;
+}
+
+.mode-tab:hover {
+  color: var(--ink);
+}
+
+.mode-tab:active {
+  transform: scale(0.97);
+}
+
+.mode-tab.active {
+  background: var(--surface);
+  color: var(--ink);
+  box-shadow: var(--shadow-sm);
+  font-weight: 600;
+}
+
+/* Guide Header Indicator */
+.guide-header-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-1) var(--space-3);
+  background: var(--accent-soft);
+  border: 1px solid var(--line-soft);
+  color: var(--accent);
+  border-radius: var(--radius-pill);
+  font-size: var(--ui-font-size-12);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  user-select: none;
+}
+
+.guide-header-indicator .guide-header-icon {
+  color: var(--accent);
+  flex-shrink: 0;
+}
+
+.guide-back-nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+/* Nav Controls */
+.nav-controls {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  position: relative;
+}
+
+.nav-controls-desktop {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  position: relative;
+}
+
+.nav-controls-mobile {
+  display: none;
+  align-items: center;
+  gap: var(--space-2);
+  position: relative;
+}
+
+.nav-mobile-menu-btn {
+  min-height: 36px;
+  min-width: 36px;
+  padding: var(--space-1) var(--space-2);
+}
+
+.nav-mobile-dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  width: 260px;
+  max-width: calc(100vw - 24px);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  padding: var(--space-2);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.nav-mobile-section-header {
+  font-size: var(--ui-font-size-11);
+  font-weight: 600;
+  color: var(--ink-3);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: var(--space-1) var(--space-2);
+}
+
+.nav-mobile-divider {
+  height: 1px;
+  background: var(--line-soft);
+  margin: var(--space-1) 0;
+}
+
+.nav-mobile-btn-group {
+  display: flex;
+  gap: var(--space-1);
+  padding: 0 var(--space-1);
+}
+
+.nav-mobile-theme-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-1);
+}
+
+.nav-mobile-pill-btn {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-1);
+  padding: var(--space-1) var(--space-2);
+  font-size: var(--ui-font-size-12);
+  font-weight: 500;
+  border-radius: var(--radius-xs);
+  border: 1px solid var(--line);
+  background: var(--surface-2);
+  color: var(--ink-2);
+  cursor: pointer;
+  transition: all var(--motion-fast);
+}
+
+.nav-mobile-pill-btn:hover {
+  background: var(--surface-3);
+  color: var(--ink);
+}
+
+.nav-mobile-pill-btn.active {
+  background: var(--accent);
+  color: var(--on-accent);
+  border-color: var(--accent);
+  font-weight: 600;
+}
+
+/* Nav Buttons: Quiet secondary outline va bitta asosiy to'ldirilgan tugma (Eksport) */
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-sm);
+  font-size: var(--ui-font-size-13);
+  font-weight: 500;
+  cursor: pointer;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--ink);
+  transition: all var(--motion-fast);
+  user-select: none;
+  white-space: nowrap;
+}
+
+.nav-btn:hover {
+  background-color: var(--surface-2);
+  border-color: var(--bronze);
+  color: var(--ink);
+}
+
+.nav-btn.active {
+  background: var(--accent-soft, rgba(27, 42, 74, 0.08));
+  color: var(--accent);
+  border-color: var(--accent);
+  font-weight: 600;
+}
+
+.nav-btn:focus-visible {
+  outline: none;
+  box-shadow: var(--focus);
+}
+
+/* "Eksport" — Yagona to'ldirilgan asosiy tugma (Deep Navy) */
+.nav-btn-primary {
+  background: var(--accent);
+  color: var(--on-accent);
+  border: 1px solid var(--accent);
+  font-weight: 600;
+  box-shadow: var(--shadow-sm);
+}
+
+.nav-btn-primary:hover {
+  background: var(--accent-hover);
+  border-color: var(--accent-hover);
+  color: var(--on-accent);
+}
+
+.nav-btn-primary:active {
+  background: var(--accent-active);
+  border-color: var(--accent-active);
+}
+
+.nav-btn-more {
+  padding: var(--space-2) var(--space-3);
+  color: var(--ink-2);
+}
+
+.nav-btn-more:hover {
+  color: var(--ink);
+  background-color: var(--surface-2);
+}
+
+/* Dropdown va Popover Menular */
+.dropdown-menu-wrap {
+  position: relative;
+}
+
+.dropdown-popover-card {
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  min-width: 220px;
+  z-index: 100;
+  padding: var(--space-2);
+  animation: fadeInDown 0.12s ease-out;
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dropdown-menu-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  width: 100%;
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--ui-font-size-13);
+  color: var(--ink);
+  background: none;
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  text-align: left;
+  transition: background-color var(--motion-fast);
+}
+
+.dropdown-menu-item:hover {
+  background-color: var(--surface-2);
+}
+
+.dropdown-menu-item.active {
+  color: var(--accent);
+  font-weight: 600;
+  background-color: var(--accent-soft);
+}
+
+.dropdown-tip-box {
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: var(--space-2) var(--space-2);
+  margin: 6px 0 2px;
+  font-size: var(--ui-font-size-11);
+  color: var(--ink-2);
+  line-height: 1.45;
+}
+
+/* ==========================================================================
+   ASOSIY ISH MAYDONI (WORKSPACE & PANES)
+   ========================================================================== */
+.workspace-container {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+  position: relative;
+  background: var(--bg);
+}
+
+.editor-column {
+  flex: 1 1 0%;
+  min-width: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: var(--surface);
+  border-right: 1px solid var(--line);
+  overflow: hidden;
+}
+
+.editor-column.full-width {
+  flex: 1 1 100%;
+  border-right: none;
+}
+
+.preview-column {
+  flex: 1 1 0%;
+  min-width: 0;
+  height: 100%;
+  overflow-y: auto;
+  position: relative;
+  background: var(--bg);
+  display: flex;
+  flex-direction: column;
+}
+
+.preview-column.full-width {
+  flex: 1 1 100%;
+}
+
+/* Bo'sh holat (Empty State) */
+.workspace-empty-state {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-10);
+  text-align: center;
+  background: var(--surface);
+  color: var(--ink);
+}
+
+.empty-state-icon-box {
+  width: 64px;
+  height: 64px;
+  border-radius: var(--radius-lg);
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--space-5);
+  color: var(--bronze);
+}
+
+.empty-state-heading {
+  font-size: var(--ui-font-size-20);
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: var(--space-2);
+}
+
+.empty-state-text {
+  font-size: var(--ui-font-size-14);
+  color: var(--ink-2);
+  max-width: 440px;
+  line-height: 1.55;
+  margin-bottom: var(--space-6);
+}
+
+.empty-state-btn-group {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-8);
+}
+
+.empty-state-shortcuts-bar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-6);
+  font-size: var(--ui-font-size-12);
+  color: var(--ink-3);
+}
+
+.shortcut-kbd {
+  font-family: var(--font-mono);
+  font-size: var(--ui-font-size-11);
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-xs);
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  color: var(--ink-2);
+  margin-right: 4px;
+}
+
+/* Xabarnomalar (Toasts) */
+.toast-notice {
+  position: fixed;
+  bottom: var(--space-6);
+  right: var(--space-6);
+  background: var(--accent);
+  color: var(--on-accent);
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-size: var(--ui-font-size-13);
+  font-weight: 500;
+  z-index: 1000;
+  animation: slideInRight 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.undo-toast-notice {
+  position: fixed;
+  bottom: var(--space-6);
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--accent);
+  color: var(--on-accent);
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  font-size: var(--ui-font-size-13);
+  z-index: 1000;
+}
+
+.undo-toast-button {
+  background: none;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  color: var(--on-accent);
+  font-weight: 600;
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-xs);
+  cursor: pointer;
+  font-size: var(--ui-font-size-12);
+  transition: all var(--motion-fast);
+}
+
+.undo-toast-button:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* Responsive moslashuvchanlik */
+@media (max-width: 1024px) {
+  .editor-column {
+    width: 50%;
+  }
+  .preview-column {
+    width: 50%;
+  }
+}
+
+@media (max-width: 768px) {
+  .app-navbar {
+    padding: 0 var(--space-3);
+    gap: var(--space-2);
+  }
+  .nav-controls-desktop {
+    display: none !important;
+  }
+  .nav-controls-mobile {
+    display: flex !important;
+  }
+  .breadcrumb-nav .crumb-item:not(.crumb-current) {
+    display: none;
+  }
+  .breadcrumb-nav .crumb-sep {
+    display: none;
+  }
+  .crumb-saved-badge {
+    margin-left: var(--space-1);
+    font-size: var(--ui-font-size-11);
+  }
+  .view-mode-pill .mode-tab:nth-child(3) {
+    display: none; /* Ikkalasi rejimini mobil qurilmalarda yashirish */
+  }
+  .sidebar-backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(20, 24, 32, 0.5);
+    backdrop-filter: blur(2px);
+    z-index: 999;
+  }
+}
+
+@media (max-width: 480px) {
+  .app-navbar {
+    padding: 0 var(--space-2);
+    gap: var(--space-1);
+  }
+  .brand-section {
+    flex: 1;
+    min-width: 0;
+  }
+  .breadcrumb-nav {
+    flex: 1;
+    min-width: 0;
+    max-width: 130px;
+    font-size: var(--ui-font-size-12);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .crumb-current {
+    display: block;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .crumb-saved-badge {
+    display: none;
+  }
+  .view-mode-pill {
+    padding: var(--space-1);
+    gap: var(--space-1);
+    flex-shrink: 0;
+  }
+  .mode-tab {
+    min-height: 36px;
+    padding: var(--space-1) var(--space-3);
+    min-width: unset;
+    font-size: var(--ui-font-size-12);
+  }
+  .guide-header-indicator {
+    padding: var(--space-1) var(--space-2);
+    font-size: var(--ui-font-size-11);
+  }
+  .nav-mobile-menu-btn {
+    min-height: 36px;
+    min-width: 36px;
+    padding: var(--space-1) var(--space-2);
+    flex-shrink: 0;
+  }
+}

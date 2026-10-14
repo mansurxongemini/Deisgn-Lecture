@@ -1,0 +1,816 @@
+/* ==========================================================================
+   IMTIHON TRENAJYORI (SPACED REPETITION / SM-2) STILLARI
+   Apple HIG & Quiet Luxury Legal Editorial Token System
+   ========================================================================== */
+
+.exam-trainer-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
+  background: var(--bg);
+  color: var(--ink);
+  box-sizing: border-box;
+  overflow-y: auto;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* 1. Yuqori sarlavha va statistika paneli */
+.exam-header-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-4) var(--space-6);
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(12px) saturate(180%);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
+  border-bottom: 1px solid var(--line-soft);
+  gap: var(--space-4);
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+
+.exam-header-left {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.exam-header-title-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.exam-cap-icon {
+  color: var(--accent);
+}
+
+.exam-header-title {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+
+.exam-doc-label {
+  font-size: 0.8rem;
+  color: var(--ink-2);
+}
+
+/* Statistik pills */
+.exam-stats-pills {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.exam-stat-pill {
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  gap: 6px;
+  background: var(--surface-2);
+  border: 1px solid var(--line-soft);
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-pill);
+  font-size: 0.78rem;
+  color: var(--ink-2);
+}
+
+.stat-pill-label {
+  font-weight: 500;
+}
+
+.stat-pill-val {
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.stat-val-due {
+  color: var(--accent);
+}
+
+.stat-val-mastered {
+  color: var(--success);
+}
+
+.stat-pill-streak {
+  background: var(--warning-bg);
+  border-color: var(--warning-border);
+  color: var(--warning);
+}
+
+.streak-flame-icon {
+  color: var(--warning);
+}
+
+/* 2. Subnav (Filtrlar va progress bar) */
+.exam-subnav-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-2) var(--space-6);
+  background: var(--surface);
+  border-bottom: 1px solid var(--line-soft);
+  gap: var(--space-3);
+  box-sizing: border-box;
+  max-width: 100%;
+}
+
+.exam-filter-tabs {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  overflow-x: auto;
+  max-width: 100%;
+  min-width: 0;
+  scrollbar-width: none;
+}
+
+.exam-filter-tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.exam-tab-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 28px;
+  background: transparent;
+  border: 1px solid transparent;
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-sm);
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--ink-2);
+  cursor: pointer;
+  transition: all var(--motion-fast);
+  white-space: nowrap;
+}
+
+.exam-tab-btn:hover {
+  background: var(--surface-2);
+  color: var(--ink);
+}
+
+.exam-tab-btn:active {
+  transform: scale(0.97);
+}
+
+.exam-tab-btn.active {
+  background: var(--accent-soft);
+  border-color: var(--line);
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.exam-progress-counter {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--ink-2);
+}
+
+.exam-progress-track {
+  width: 120px;
+  height: 6px;
+  background: var(--surface-2);
+  border-radius: var(--radius-pill);
+  overflow: hidden;
+  border: 1px solid var(--line-soft);
+}
+
+.exam-progress-fill {
+  height: 100%;
+  background: var(--accent);
+  transition: width 0.25s ease;
+  border-radius: var(--radius-pill);
+}
+
+/* 3. Asosiy Karta Maydoni */
+.exam-card-stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-6);
+  flex: 1;
+  min-height: 460px;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.exam-flashcard-box {
+  width: 100%;
+  max-width: 680px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-md);
+  padding: var(--space-6) var(--space-8);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  transition: all var(--motion-normal);
+  position: relative;
+}
+
+.exam-card-top-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  border-bottom: 1px solid var(--line-soft);
+  padding-bottom: var(--space-3);
+}
+
+.exam-card-badges {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.exam-badge-section {
+  font-size: 0.75rem;
+  font-weight: 600;
+  background: var(--surface-2);
+  color: var(--ink-2);
+  border: 1px solid var(--line-soft);
+  padding: 3px 8px;
+  border-radius: var(--radius-xs);
+}
+
+.exam-badge-category {
+  font-size: 0.75rem;
+  font-weight: 600;
+  background: var(--bronze-soft);
+  color: var(--bronze-text);
+  border: 1px solid var(--line);
+  padding: 3px 8px;
+  border-radius: var(--radius-xs);
+}
+
+.exam-badge-interval {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--ink-2);
+  padding: 3px 6px;
+}
+
+.exam-source-jump-btn {
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  background: transparent;
+  border: none;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--ink-2);
+  text-decoration: underline;
+  cursor: pointer;
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-xs);
+}
+
+.exam-source-jump-btn:hover {
+  color: var(--accent);
+  background: var(--surface-2);
+}
+
+/* Savol maydoni */
+.exam-card-question-area {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin-top: 4px;
+}
+
+.exam-question-icon-wrap {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--accent-soft);
+  border: 1px solid var(--line-soft);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--accent);
+}
+
+.exam-question-text {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  font-weight: 600;
+  line-height: 1.55;
+  color: var(--ink);
+  flex: 1;
+}
+
+/* Maslahat box */
+.exam-card-hint-box {
+  background: var(--bronze-soft);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--bronze);
+  border-radius: var(--radius-md);
+  padding: 10px 14px;
+  font-size: 0.85rem;
+  color: var(--bronze-text);
+  line-height: 1.45;
+}
+
+.exam-hint-label {
+  font-weight: 600;
+}
+
+/* Javobni ochish tugmasi */
+.exam-reveal-prompt-area {
+  display: flex;
+  justify-content: center;
+  padding: 14px 0 6px 0;
+}
+
+.exam-reveal-big-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  gap: 10px;
+  background: var(--accent);
+  color: var(--on-accent);
+  border: 1px solid var(--accent);
+  padding: 10px 28px;
+  border-radius: var(--radius-md);
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transition: all var(--motion-fast);
+}
+
+.exam-reveal-big-btn:hover {
+  background: var(--accent-hover);
+  border-color: var(--accent-hover);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.exam-reveal-big-btn:active {
+  background: var(--accent-active);
+  transform: scale(0.98);
+}
+
+.exam-key-badge {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius-xs);
+  padding: 2px 6px;
+  font-size: 0.72rem;
+  font-family: var(--font-mono);
+}
+
+/* Ochilgan javob */
+.exam-card-answer-revealed {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  animation: fadeInAnswer 0.2s ease-out;
+}
+
+@keyframes fadeInAnswer {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.exam-answer-divider {
+  height: 1px;
+  background: var(--line-soft);
+  margin: 6px 0;
+}
+
+.exam-answer-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--success);
+}
+
+.exam-answer-text {
+  font-size: 1.05rem;
+  line-height: 1.65;
+  color: var(--ink);
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--bronze);
+  border-radius: var(--radius-md);
+  padding: 16px 20px;
+}
+
+/* 4 ta SM-2 Baholash tugmalari */
+.exam-rating-bar {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 8px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line-soft);
+}
+
+.exam-rating-prompt {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--ink-2);
+  text-align: center;
+}
+
+.exam-rating-buttons-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.exam-rate-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 56px;
+  gap: 4px;
+  padding: 10px 8px;
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all var(--motion-fast);
+  background: var(--surface-2);
+}
+
+.exam-rate-btn:hover {
+  transform: translateY(-2px);
+}
+
+.exam-rate-btn:active {
+  transform: scale(0.97);
+}
+
+.rate-num-badge {
+  font-size: 0.75rem;
+  font-weight: 700;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.06);
+}
+
+.rate-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.rate-title {
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+
+.rate-sub {
+  font-size: 0.7rem;
+  opacity: 0.85;
+}
+
+/* 1: Yana (Again - Semantic Danger) */
+.rate-btn-again {
+  background: var(--danger-bg);
+  color: var(--danger);
+  border-color: var(--danger-border);
+}
+.rate-btn-again:hover {
+  box-shadow: var(--shadow-sm);
+}
+
+/* 2: Qiyin (Hard - Semantic Warning) */
+.rate-btn-hard {
+  background: var(--warning-bg);
+  color: var(--warning);
+  border-color: var(--warning-border);
+}
+.rate-btn-hard:hover {
+  box-shadow: var(--shadow-sm);
+}
+
+/* 4: Yaxshi (Good - Semantic Oxford Navy) */
+.rate-btn-good {
+  background: var(--accent-soft);
+  color: var(--accent);
+  border-color: var(--line);
+}
+.rate-btn-good:hover {
+  border-color: var(--accent);
+  box-shadow: var(--shadow-sm);
+}
+
+/* 5: Oson (Easy - Semantic Success) */
+.rate-btn-easy {
+  background: var(--success-bg);
+  color: var(--success);
+  border-color: var(--success-border);
+}
+.rate-btn-easy:hover {
+  box-shadow: var(--shadow-sm);
+}
+
+.exam-keyboard-tip {
+  font-size: 0.75rem;
+  color: var(--ink-2);
+  text-align: center;
+  margin-top: 4px;
+}
+
+/* Pastki navigatsiya */
+.exam-stage-footer-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 680px;
+  margin-top: 16px;
+  padding: 0 4px;
+  box-sizing: border-box;
+}
+
+.exam-nav-circle-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 34px;
+  gap: 6px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  padding: 6px 14px;
+  border-radius: var(--radius-md);
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--ink);
+  cursor: pointer;
+  transition: all var(--motion-fast);
+}
+
+.exam-nav-circle-btn:hover:not(:disabled) {
+  background: var(--surface-2);
+  border-color: var(--bronze);
+}
+
+.exam-nav-circle-btn:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+.exam-nav-circle-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.exam-toggle-reveal-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 32px;
+  padding: 4px 10px;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  border: none;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--ink-2);
+  cursor: pointer;
+  gap: 6px;
+  transition: all var(--motion-fast);
+}
+
+.exam-toggle-reveal-link:hover {
+  color: var(--ink);
+  background: var(--surface-2);
+}
+
+/* 4. Yakuniy tabrik kartasi (Victory Card) */
+.exam-completion-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-xl);
+  padding: 40px 32px;
+  max-width: 540px;
+  width: 100%;
+  margin: 40px auto;
+  box-shadow: var(--shadow-md);
+  box-sizing: border-box;
+}
+
+.exam-completion-trophy {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: var(--bronze-soft);
+  border: 1px solid var(--line);
+  color: var(--bronze);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.exam-completion-title {
+  margin: 0 0 8px 0;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.exam-completion-desc {
+  font-size: 0.9rem;
+  color: var(--ink-2);
+  line-height: 1.5;
+  margin: 0 0 24px 0;
+}
+
+.exam-session-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  width: 100%;
+  margin-bottom: 24px;
+}
+
+.session-summary-box {
+  background: var(--surface-2);
+  border: 1px solid var(--line-soft);
+  border-radius: var(--radius-md);
+  padding: 12px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.summary-val {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.summary-lbl {
+  font-size: 0.72rem;
+  color: var(--ink-2);
+}
+
+.exam-completion-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+.exam-action-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  gap: 8px;
+  padding: 10px 20px;
+  border-radius: var(--radius-md);
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--motion-fast);
+}
+
+.exam-action-btn:active {
+  transform: scale(0.97);
+}
+
+.exam-btn-primary {
+  background: var(--accent);
+  color: var(--on-accent);
+  border: 1px solid var(--accent);
+}
+
+.exam-btn-primary:hover {
+  background: var(--accent-hover);
+  border-color: var(--accent-hover);
+}
+
+.exam-btn-secondary {
+  background: var(--surface-2);
+  color: var(--ink);
+  border: 1px solid var(--line);
+}
+
+.exam-btn-secondary:hover {
+  background: var(--line-soft);
+}
+
+/* 5. Bo'sh holat (Empty state) */
+.exam-empty-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 500px;
+  margin: 40px auto;
+  padding: 40px 24px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-sm);
+  box-sizing: border-box;
+}
+
+.exam-empty-icon-wrap {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: var(--accent-soft);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent);
+  margin-bottom: 16px;
+}
+
+.exam-empty-title {
+  margin: 0 0 10px 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.exam-empty-desc {
+  font-size: 0.88rem;
+  color: var(--ink-2);
+  line-height: 1.5;
+  margin: 0 0 20px 0;
+}
+
+@media (max-width: 640px) {
+  .exam-header-bar {
+    padding: var(--space-3) var(--space-4);
+    gap: var(--space-2);
+  }
+  .exam-subnav-bar {
+    padding: var(--space-3) var(--space-4);
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--space-2);
+  }
+  .exam-filter-tabs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-2);
+    width: 100%;
+    overflow: visible;
+  }
+  .exam-tab-btn {
+    min-height: 36px;
+    width: 100%;
+    padding: var(--space-1) var(--space-2);
+    font-size: 0.78rem;
+  }
+  .exam-progress-counter {
+    justify-content: space-between;
+    width: 100%;
+  }
+  .exam-card-stage {
+    padding: var(--space-3);
+    min-height: auto;
+  }
+  .exam-rating-buttons-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .exam-flashcard-box {
+    padding: 20px 16px;
+  }
+  .exam-nav-circle-btn {
+    min-height: 40px;
+    padding: 8px 14px;
+  }
+  .exam-toggle-reveal-link {
+    min-height: 36px;
+  }
+}

@@ -1,0 +1,292 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://yurist-studio.uz/schemas/document.schema.json",
+  "title": "LegalStudyDocument",
+  "description": "Yuridik talabalar uchun o‘quv qo‘llanmasi va konspekt formati",
+  "type": "object",
+  "required": ["title", "sections"],
+  "properties": {
+    "version": {
+      "type": ["string", "number"],
+      "description": "Format versiyasi, masalan: '1.0' yoki 1"
+    },
+    "id": {
+      "type": "string",
+      "description": "Hujjatning barqaror identifikatori (ixtiyoriy)"
+    },
+    "title": {
+      "type": "string",
+      "description": "Hujjat sarlavhasi"
+    },
+    "subtitle": {
+      "type": "string",
+      "description": "Hujjatning qisqa tavsifi yoki izohi"
+    },
+    "author": {
+      "type": "string",
+      "description": "Muallif yoki tuzuvchi ismi"
+    },
+    "language": {
+      "type": "string",
+      "default": "uz",
+      "description": "Hujjat tili (masalan: 'uz')"
+    },
+    "theme": {
+      "type": "string",
+      "enum": ["classic", "modern", "dark", "minimal"],
+      "default": "classic",
+      "description": "Vizual dizayn mavzusi"
+    },
+    "cover": {
+      "type": "object",
+      "properties": {
+        "enabled": { "type": "boolean", "default": true },
+        "institution": { "type": "string" },
+        "year": { "type": "string" },
+        "subtitle": { "type": "string" }
+      }
+    },
+    "toc": {
+      "type": "boolean",
+      "default": true,
+      "description": "Avtomatik mundarija chiqarish"
+    },
+    "sections": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["title", "blocks"],
+        "properties": {
+          "id": { "type": "string" },
+          "title": { "type": "string" },
+          "subtitle": { "type": "string" },
+          "layout": {
+            "type": "string",
+            "enum": ["1-col", "2-col", "grid"],
+            "default": "1-col"
+          },
+          "pageBreak": {
+            "type": "boolean",
+            "default": false
+          },
+          "blocks": {
+            "type": "array",
+            "items": { "$ref": "#/$defs/block" }
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "blockStyle": {
+      "type": "object",
+      "properties": {
+        "emphasis": { "type": "string", "enum": ["low", "medium", "high"] },
+        "color": { "type": "string" },
+        "size": { "type": "string", "enum": ["sm", "md", "lg"] }
+      }
+    },
+    "block": {
+      "type": "object",
+      "oneOf": [
+        { "$ref": "#/$defs/textBlock" },
+        { "$ref": "#/$defs/listBlock" },
+        { "$ref": "#/$defs/definitionBlock" },
+        { "$ref": "#/$defs/normBlock" },
+        { "$ref": "#/$defs/tableBlock" },
+        { "$ref": "#/$defs/noteBlock" },
+        { "$ref": "#/$defs/caseBlock" },
+        { "$ref": "#/$defs/qaBlock" },
+        { "$ref": "#/$defs/compareBlock" },
+        { "$ref": "#/$defs/flowBlock" },
+        { "$ref": "#/$defs/timelineBlock" }
+      ]
+    },
+    "textBlock": {
+      "type": "object",
+      "required": ["type", "text"],
+      "properties": {
+        "id": { "type": "string" },
+        "type": { "const": "text" },
+        "text": { "type": "string" },
+        "lead": { "type": "boolean" },
+        "style": { "$ref": "#/$defs/blockStyle" }
+      }
+    },
+    "listBlock": {
+      "type": "object",
+      "required": ["type", "items"],
+      "properties": {
+        "id": { "type": "string" },
+        "type": { "const": "list" },
+        "items": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "ordered": { "type": "boolean", "default": false },
+        "style": { "$ref": "#/$defs/blockStyle" }
+      }
+    },
+    "definitionBlock": {
+      "type": "object",
+      "required": ["type", "term", "definition"],
+      "properties": {
+        "id": { "type": "string" },
+        "type": { "const": "definition" },
+        "term": { "type": "string" },
+        "definition": { "type": "string" },
+        "source": { "type": "string" },
+        "style": { "$ref": "#/$defs/blockStyle" }
+      }
+    },
+    "normBlock": {
+      "type": "object",
+      "required": ["type", "number", "title", "text"],
+      "properties": {
+        "id": { "type": "string" },
+        "type": { "const": "norm" },
+        "number": { "type": "string" },
+        "title": { "type": "string" },
+        "text": { "type": "string" },
+        "source": { "type": "string" },
+        "effectiveDate": { "type": "string" },
+        "style": { "$ref": "#/$defs/blockStyle" }
+      }
+    },
+    "tableBlock": {
+      "type": "object",
+      "required": ["type", "headers", "rows"],
+      "properties": {
+        "id": { "type": "string" },
+        "type": { "const": "table" },
+        "title": { "type": "string" },
+        "caption": { "type": "string" },
+        "headers": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "rows": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": { "type": "string" }
+          }
+        },
+        "style": { "$ref": "#/$defs/blockStyle" }
+      }
+    },
+    "noteBlock": {
+      "type": "object",
+      "required": ["type", "text"],
+      "properties": {
+        "id": { "type": "string" },
+        "type": { "const": "note" },
+        "variant": {
+          "type": "string",
+          "enum": ["tip", "warning", "important", "quote"],
+          "default": "tip"
+        },
+        "title": { "type": "string" },
+        "text": { "type": "string" },
+        "style": { "$ref": "#/$defs/blockStyle" }
+      }
+    },
+    "caseBlock": {
+      "type": "object",
+      "required": ["type"],
+      "properties": {
+        "id": { "type": "string" },
+        "type": { "const": "case" },
+        "title": { "type": "string" },
+        "name": { "type": "string" },
+        "court": { "type": "string" },
+        "facts": { "type": "string" },
+        "issue": { "type": "string" },
+        "rule": { "type": "string" },
+        "analysis": { "type": "string" },
+        "conclusion": { "type": "string" },
+        "style": { "$ref": "#/$defs/blockStyle" }
+      }
+    },
+    "qaBlock": {
+      "type": "object",
+      "required": ["type", "question", "answer"],
+      "properties": {
+        "id": { "type": "string" },
+        "type": { "const": "qa" },
+        "question": { "type": "string" },
+        "answer": { "type": "string" },
+        "hint": { "type": "string" },
+        "category": { "type": "string" },
+        "style": { "$ref": "#/$defs/blockStyle" }
+      }
+    },
+    "compareBlock": {
+      "type": "object",
+      "required": ["type", "items"],
+      "properties": {
+        "id": { "type": "string" },
+        "type": { "const": "compare" },
+        "items": {
+          "type": "array",
+          "minItems": 2,
+          "items": {
+            "type": "object",
+            "required": ["title", "points"],
+            "properties": {
+              "title": { "type": "string" },
+              "points": {
+                "type": "array",
+                "items": { "type": "string" }
+              },
+              "badge": { "type": "string" }
+            }
+          }
+        },
+        "style": { "$ref": "#/$defs/blockStyle" }
+      }
+    },
+    "flowBlock": {
+      "type": "object",
+      "required": ["type", "steps"],
+      "properties": {
+        "id": { "type": "string" },
+        "type": { "const": "flow" },
+        "steps": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["title"],
+            "properties": {
+              "title": { "type": "string" },
+              "description": { "type": "string" }
+            }
+          }
+        },
+        "style": { "$ref": "#/$defs/blockStyle" }
+      }
+    },
+    "timelineBlock": {
+      "type": "object",
+      "required": ["type", "events"],
+      "properties": {
+        "id": { "type": "string" },
+        "type": { "const": "timeline" },
+        "events": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["date", "title", "description"],
+            "properties": {
+              "date": { "type": "string" },
+              "title": { "type": "string" },
+              "description": { "type": "string" }
+            }
+          }
+        },
+        "style": { "$ref": "#/$defs/blockStyle" }
+      }
+    }
+  }
+}

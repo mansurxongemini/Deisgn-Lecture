@@ -1,0 +1,88 @@
+{
+  "version": "1.0",
+  "id": "doc-fuqarolik-majburiyat",
+  "title": "Fuqarolik Huquqi: Majburiyatlar va Shartnomalar",
+  "subtitle": "Shartnoma tuzish, uning bajarilishini ta’minlash va zararni qoplash asoslari",
+  "author": "Yuridik fanlar fakulteti",
+  "language": "uz",
+  "theme": "classic",
+  "cover": {
+    "enabled": true,
+    "institution": "Toshkent Davlat Yuridik Universiteti",
+    "year": "2026",
+    "subtitle": "Xususiy huquq kafedrasi o‘quv-uslubiy majmuasi"
+  },
+  "toc": true,
+  "sections": [
+    {
+      "id": "sec-shartnoma-asoslari",
+      "title": "1-bob. Shartnoma erkinligi va shartlari",
+      "subtitle": "Taraflarning tengligi va shartnoma majburiyatlari daxlsizligi",
+      "layout": "1-col",
+      "pageBreak": false,
+      "blocks": [
+        {
+          "id": "blk-shartnoma-kirish",
+          "type": "text",
+          "lead": true,
+          "text": "Fuqarolik huquqida **shartnoma erkinligi** printsipi fuqarolar va yuridik shaxslarning o‘z xohish-irodalari bilan teng sharoitda kelishuv tuzishini ta’minlaydi. Majburiyatlarni bajarmaslik ==fuqarolik-huquqiy javobgarlikka== olib keladi."
+        },
+        {
+          "id": "blk-fk-354",
+          "type": "norm",
+          "number": "354-modda",
+          "title": "Shartnoma erkinligi printsipi",
+          "text": "Fuqarolar va yuridik shaxslar shartnoma tuzishda erkindirlar. Shartnoma tuzishga majburlashga yo‘l qo‘yilmaydi, qonunda nazarda tutilgan hollar bundan mustasno.",
+          "source": "O‘zbekiston Respublikasi Fuqarolik Kodeksi",
+          "effectiveDate": "01.03.1997"
+        },
+        {
+          "id": "blk-shartnoma-turlari",
+          "type": "list",
+          "ordered": false,
+          "items": [
+            "Oldi-sotdi va yetkazib berish shartnomalari",
+            "Mulk ijarasi va lizing shartnomalari",
+            "Pudrat va xizmat ko‘rsatish shartnomalari",
+            "Kredit va qarz majburiyatlari"
+          ]
+        },
+        {
+          "id": "blk-shartnoma-eslatma",
+          "type": "note",
+          "variant": "tip",
+          "title": "Amaliy maslahat",
+          "text": "Ko‘chmas mulk oldi-sotdi shartnomalari **notarial tasdiqlanishi** va kadastr organlarida davlat ro‘yxatidan o‘tkazilishi shart. Aks holda shartnoma haqiqiy emas deb topiladi."
+        },
+        {
+          "id": "blk-zarar-jadvali",
+          "type": "table",
+          "title": "Zararni qoplash turlari va ularning chegaralari",
+          "headers": ["Zarar toifasi", "Huquqiy ta’rifi", "Isbotlash yuki"],
+          "rows": [
+            ["Haqiqiy zarar", "Mulkning yo‘qotilishi yoki shikastlanishi bilan bog‘liq xarajatlar", "To‘liq hujjatli hisob-kitob talab qilinadi"],
+            ["Boy berilgan foyda", "Oddiy fuqarolik muomalasida olinishi mumkin bo‘lgan daromad", "Asoslangan bozor prognozi va o‘tgan davr hisobi"],
+            ["Ma’naviy zarar", "Jismoniy va ruhiy azoblar oqibatidagi kompensatsiya", "Sudning adolat va oqillik mezonlari asosida belgilanadi"]
+          ]
+        },
+        {
+          "id": "blk-case-mulkiy-nizo",
+          "type": "case",
+          "title": "Fuqarolik ishi: Mahsulot yetkazib berish shartnomasini buzish oqibatlari",
+          "court": "Toshkent tumanlararo iqtisodiy sudi",
+          "facts": "Yetkazib beruvchi MChJ xaridorga 30 kun kechiktirib tovar yetkazib bergan. Xaridor ishlab chiqarish to‘xtab qolgani sababli yetkazilgan haqiqiy zarar va boy berilgan foydani undirishni talab qilgan.",
+          "rule": "Fuqarolik Kodeksining 333-moddasiga ko‘ra, tadbirkorlik faoliyatida majburiyatni lozim darajada bajarmagan taraf yengib bo‘lmas kuch (fors-major) ta’sirini isbotlamasa, javobgar bo‘ladi.",
+          "conclusion": "Sud javobgarning fors-major haqidagi vajlarini rad etdi va to‘liq moddiy zarar hamda shartnomada belgilangan penya miqdorini da’vogar foydasiga undirdi."
+        },
+        {
+          "id": "blk-qa-shartnoma",
+          "type": "qa",
+          "question": "Qanday holatlarda shartnoma tuzilgan deb hisoblanadi?",
+          "answer": "Taraflar o‘rtasida shartnomaning barcha muhim shartlari bo‘yicha qonunda talab qilingan shaklda kelishuvga erishilgan paytda shartnoma tuzilgan hisoblanadi.",
+          "hint": "Aksept va ofertaning mos kelishi.",
+          "category": "Shartnoma tuzish"
+        }
+      ]
+    }
+  ]
+}

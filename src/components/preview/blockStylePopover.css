@@ -1,0 +1,411 @@
+/**
+ * YURIST STUDIO — PER-BLOCK STYLE CONTROLS POPOVER (Task 8)
+ * Light, calm, minimalist standard matching Linear / Notion aesthetic
+ */
+
+.block-style-popover-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  background: transparent;
+}
+
+.block-style-popover {
+  position: fixed;
+  z-index: 1000;
+  width: 310px;
+  background: var(--surface, #ffffff);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--line, #e2e8f0);
+  border-radius: var(--radius-lg, 12px);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+  color: var(--ink, #1e293b);
+  padding: 14px 16px;
+  font-family: var(--font-sans, system-ui, sans-serif);
+  animation: blockPopoverFadeIn 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+  user-select: none;
+  box-sizing: border-box;
+}
+
+@keyframes blockPopoverFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Header */
+.bsp-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--line-soft, #f1f5f9);
+}
+
+.bsp-title-area {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.bsp-type-badge {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 2px 7px;
+  border-radius: var(--radius-xs, 4px);
+  background: var(--accent-soft, rgba(27, 42, 74, 0.06));
+  color: var(--accent, #1B2A4A);
+  border: 1px solid var(--line-soft, #e2e8f0);
+}
+
+.bsp-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink, #1e293b);
+}
+
+.bsp-close-btn {
+  background: none;
+  border: none;
+  color: var(--ink-2, #64748b);
+  cursor: pointer;
+  padding: 3px;
+  border-radius: var(--radius-xs, 4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s;
+}
+
+.bsp-close-btn:hover {
+  background: var(--surface-2, #f1f5f9);
+  color: var(--ink, #1e293b);
+}
+
+/* Section */
+.bsp-section {
+  margin-bottom: 12px;
+}
+
+.bsp-label {
+  display: block;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--ink-2, #64748b);
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* Color Swatches Grid (8 options) */
+.bsp-color-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+}
+
+.bsp-color-swatch {
+  height: 28px;
+  border-radius: var(--radius-sm, 6px);
+  border: 2px solid transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.12s ease, border-color 0.12s ease, box-shadow 0.12s ease;
+  position: relative;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.bsp-color-swatch:hover {
+  transform: scale(1.06);
+}
+
+.bsp-color-swatch.active {
+  border-color: var(--surface, #ffffff);
+  box-shadow: 0 0 0 2px var(--accent, #1B2A4A), 0 2px 4px rgba(0, 0, 0, 0.12);
+  transform: scale(1.04);
+}
+
+.bsp-swatch-check {
+  color: #ffffff;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.4));
+}
+
+/* Segmented Buttons (Size & Alignment) */
+.bsp-segmented-row {
+  display: flex;
+  background: var(--surface-2, #f1f5f9);
+  padding: 2px;
+  border-radius: var(--radius-md, 8px);
+  border: 1px solid var(--line-soft, #e2e8f0);
+  gap: 2px;
+}
+
+.bsp-seg-btn {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: var(--ink-2, #64748b);
+  padding: 5px 8px;
+  font-size: 12px;
+  font-weight: 500;
+  border-radius: var(--radius-sm, 6px);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  transition: all 0.15s ease;
+}
+
+.bsp-seg-btn:hover {
+  color: var(--ink, #1e293b);
+  background: rgba(0, 0, 0, 0.04);
+}
+
+.bsp-seg-btn.active {
+  background: var(--accent, #1B2A4A);
+  color: var(--on-accent, #ffffff);
+  box-shadow: 0 1px 3px rgba(27, 42, 74, 0.2);
+}
+
+/* Toggle Row (Hide in PDF) */
+.bsp-toggle-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 10px;
+  background: var(--surface-2, #f1f5f9);
+  border-radius: var(--radius-md, 8px);
+  border: 1px solid var(--line-soft, #e2e8f0);
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.bsp-toggle-row:hover {
+  background: var(--surface, #ffffff);
+}
+
+.bsp-toggle-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--ink, #1e293b);
+}
+
+.bsp-switch {
+  width: 34px;
+  height: 20px;
+  background: var(--line, #cbd5e1);
+  border-radius: 12px;
+  position: relative;
+  transition: background-color 0.2s ease;
+  flex-shrink: 0;
+}
+
+.bsp-switch.checked {
+  background: var(--accent, #1B2A4A);
+}
+
+.bsp-switch-thumb {
+  width: 16px;
+  height: 16px;
+  background: #ffffff;
+  border-radius: 50%;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  transition: transform 0.2s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.bsp-switch.checked .bsp-switch-thumb {
+  transform: translateX(14px);
+}
+
+/* Footer / Reset Action */
+.bsp-footer {
+  margin-top: 14px;
+  padding-top: 10px;
+  border-top: 1px solid var(--line-soft, #f1f5f9);
+}
+
+.bsp-reset-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background: var(--danger-bg, #fef2f2);
+  color: var(--danger, #dc2626);
+  border: 1px solid var(--danger-border, #fecaca);
+  padding: 6px 12px;
+  border-radius: var(--radius-sm, 6px);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.bsp-reset-btn:hover {
+  background: #fee2e2;
+  border-color: #fca5a5;
+  color: #b91c1c;
+}
+
+/* Block Wrapper Styles (Merged with Document Style & Overrides) */
+.block-style-wrapper {
+  position: relative;
+  transition: transform 0.15s ease, font-size 0.15s ease;
+}
+
+.block-style-wrapper:hover .block-style-trigger-btn {
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.block-style-trigger-btn {
+  position: absolute;
+  top: -12px;
+  right: 8px;
+  z-index: 35;
+  visibility: hidden;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  background: var(--surface, #ffffff);
+  color: var(--accent, #1B2A4A);
+  font-size: 12px;
+  font-weight: 600;
+  border: 1px solid var(--line, #e2e8f0);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-4px);
+  transition: all 0.18s ease;
+}
+
+.block-style-trigger-btn:hover {
+  background: var(--surface-2, #f1f5f9);
+  border-color: var(--line-soft, #cbd5e1);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+/* S / M / L Size variations */
+.block-style-wrapper.block-size-s {
+  font-size: 0.88em;
+}
+
+.block-style-wrapper.block-size-l {
+  font-size: 1.15em;
+}
+
+.block-style-wrapper.block-size-l .norm-number-badge,
+.block-style-wrapper.block-size-l .qa-badge {
+  padding: 6px 14px !important;
+  font-size: 1.1em !important;
+}
+
+.block-style-wrapper.block-size-l .norm-title,
+.block-style-wrapper.block-size-l .qa-question {
+  font-size: 1.16em !important;
+}
+
+/* Hide in PDF indicator */
+.block-style-wrapper.block-hide-in-pdf {
+  opacity: 0.72;
+  border: 2px dashed #f43f5e;
+  border-radius: 8px;
+  padding: 4px;
+  margin-bottom: 24px;
+}
+
+.block-style-wrapper.block-hide-in-pdf::after {
+  content: 'PDFda yashiriladi';
+  position: absolute;
+  bottom: 8px;
+  right: 12px;
+  font-size: 11px;
+  font-weight: 700;
+  background: rgba(244, 63, 94, 0.15);
+  color: #f43f5e;
+  border: 1px solid rgba(244, 63, 94, 0.3);
+  padding: 2px 8px;
+  border-radius: 12px;
+  pointer-events: none;
+  z-index: 20;
+}
+
+/* Print host suppression */
+.print-host-root .block-hide-in-pdf {
+  display: none !important;
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+}
+
+/* @media print suppression */
+@media print {
+  .block-hide-in-pdf {
+    display: none !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+  }
+}
+
+/* Direct element accent styling when --block-accent is present */
+.block-style-wrapper[style*="--block-accent"] .norm-plaque {
+  border-left-color: var(--block-accent) !important;
+}
+.block-style-wrapper[style*="--block-accent"] .norm-number-badge {
+  background: var(--block-accent) !important;
+  color: #ffffff !important;
+}
+.block-style-wrapper[style*="--block-accent"] .norm-scale-icon {
+  color: var(--block-accent) !important;
+}
+.block-style-wrapper[style*="--block-accent"] .study-table thead th {
+  background: var(--block-accent) !important;
+  color: #ffffff !important;
+}
+.block-style-wrapper[style*="--block-accent"] .qa-badge {
+  background: var(--block-accent) !important;
+  color: #ffffff !important;
+}
+.block-style-wrapper[style*="--block-accent"] .case-step-indicator {
+  background: var(--block-accent) !important;
+}
+.block-style-wrapper[style*="--block-accent"] .case-card {
+  border-top-color: var(--block-accent) !important;
+}
+.block-style-wrapper[style*="--block-accent"] .study-note {
+  border-left-color: var(--block-accent) !important;
+}
+.block-style-wrapper[style*="--block-accent"] .flow-number {
+  background: var(--block-accent) !important;
+}
+.block-style-wrapper[style*="--block-accent"] .timeline-dot {
+  background: var(--block-accent) !important;
+}
+

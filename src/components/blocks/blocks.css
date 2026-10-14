@@ -1,0 +1,916 @@
+/* Bloklar uchun premium uslublar (Kitobiy, akademik va yuridik standart) */
+
+.block-container {
+  margin-bottom: 24px;
+  position: relative;
+}
+
+/* 1. NORM (Qonun lavhasi / Plaque) */
+.norm-plaque {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-left: 4px solid var(--accent-gold);
+  border-radius: var(--radius-md);
+  padding: var(--space-5) var(--space-6);
+  box-shadow: var(--shadow-card);
+  position: relative;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.norm-plaque:hover {
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+}
+
+.norm-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+
+.norm-badge-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.norm-number-badge {
+  font-family: var(--font-ui);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--on-accent);
+  background: var(--accent);
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-xs);
+}
+
+.norm-title {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin: 0;
+  flex: 1;
+}
+
+.norm-body {
+  font-family: var(--font-body);
+  font-size: 1.02rem;
+  line-height: 1.75;
+  color: var(--text-main);
+  margin-bottom: 14px;
+}
+
+.norm-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  border-top: 1px dashed var(--border-subtle);
+  padding-top: var(--space-2);
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  flex-wrap: wrap;
+}
+
+.norm-source {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-style: italic;
+}
+
+.norm-date {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--bg-subtle);
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-xs);
+}
+
+/* 2. CASE (Sud amaliyoti / 3 bosqichli tahlil) */
+.case-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-left: 4px solid var(--block-accent, var(--accent));
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+}
+
+.case-header {
+  background: var(--accent-navy-soft);
+  border-bottom: 1px solid var(--border-subtle);
+  padding: var(--space-3) var(--space-5);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+
+.case-title-area {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.case-gavel-icon {
+  color: var(--block-accent, var(--accent-gold));
+}
+
+.case-name {
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin: 0;
+}
+
+.case-court-badge {
+  font-family: var(--font-ui);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-xs);
+}
+
+.case-steps-container {
+  padding: var(--space-4) var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.case-step {
+  display: flex;
+  gap: var(--space-3);
+  align-items: stretch;
+  position: relative;
+}
+
+.case-step-left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+  width: var(--space-6);
+}
+
+.case-step-indicator {
+  width: var(--space-6);
+  height: var(--space-6);
+  border-radius: var(--radius-pill);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--ui-font-size-11);
+  font-weight: 700;
+  flex-shrink: 0;
+  font-family: var(--font-ui);
+  background: var(--surface-2);
+  color: var(--accent);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-sm);
+  z-index: 2;
+  transition: all var(--motion-fast);
+}
+
+.case-step.step-facts .case-step-indicator {
+  background: var(--accent-soft);
+  color: var(--accent);
+  border-color: var(--line);
+}
+
+.case-step.step-issue .case-step-indicator {
+  background: var(--surface-2);
+  color: var(--accent);
+  border-color: var(--line-soft);
+}
+
+.case-step.step-rule .case-step-indicator {
+  background: var(--bronze-soft);
+  color: var(--bronze-text);
+  border-color: var(--bronze);
+}
+
+.case-step.step-analysis .case-step-indicator {
+  background: var(--surface-2);
+  color: var(--accent);
+  border-color: var(--line-soft);
+}
+
+.case-step.step-conclusion .case-step-indicator {
+  background: var(--success-bg);
+  color: var(--success);
+  border-color: var(--success-border);
+}
+
+.case-step-line {
+  flex: 1;
+  width: 2px;
+  background: var(--line-soft);
+  margin-top: var(--space-1);
+  margin-bottom: var(--space-1);
+  min-height: var(--space-3);
+}
+
+.case-step-content {
+  flex: 1;
+  min-width: 0;
+  padding-bottom: var(--space-2);
+}
+
+.case-step-label {
+  font-family: var(--font-ui);
+  font-size: var(--ui-font-size-11);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+  margin-bottom: var(--space-1);
+}
+
+.case-step-text {
+  font-family: var(--font-body);
+  font-size: 0.96rem;
+  line-height: 1.65;
+  color: var(--text-main);
+  margin: 0;
+}
+
+/* QA Interactive Reveal Buttons */
+.qa-reveal-action-row {
+  margin-top: var(--space-2);
+}
+
+.qa-reveal-btn {
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  gap: var(--space-1);
+  background: var(--surface-2);
+  border: 1px solid var(--line-soft);
+  color: var(--accent);
+  font-size: var(--ui-font-size-12);
+  font-weight: 600;
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  transition: all var(--motion-fast);
+}
+
+.qa-reveal-btn:hover {
+  background: var(--surface);
+  border-color: var(--accent);
+  color: var(--accent);
+  box-shadow: var(--shadow-sm);
+}
+
+.qa-reveal-btn:active {
+  transform: scale(0.97);
+}
+
+.qa-reveal-hide-btn {
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  gap: var(--space-1);
+  background: transparent;
+  border: none;
+  color: var(--ink-2);
+  font-size: var(--ui-font-size-11);
+  cursor: pointer;
+  margin-left: var(--space-2);
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-xs);
+  transition: all var(--motion-fast);
+}
+
+.qa-reveal-hide-btn:hover {
+  background: var(--surface-2);
+  color: var(--ink);
+}
+
+.qa-group-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  margin-bottom: var(--space-2);
+}
+
+.qa-group-header-left {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.qa-group-reveal-all-btn {
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  gap: var(--space-1);
+  background: var(--surface-2);
+  border: 1px solid var(--line-soft);
+  color: var(--ink-2);
+  font-size: var(--ui-font-size-11);
+  font-weight: 500;
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  transition: all var(--motion-fast);
+}
+
+.qa-group-reveal-all-btn:hover {
+  background: var(--surface);
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+/* 3. TABLE (Jadval) */
+.table-wrapper {
+  margin: 16px 0;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  overflow-x: auto;
+  background: var(--bg-surface);
+  box-shadow: var(--shadow-card);
+  box-sizing: border-box;
+  max-width: 100%;
+}
+
+.table-caption {
+  font-family: var(--font-ui);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  padding: var(--space-2) var(--space-4);
+  background: var(--bg-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+  text-align: left;
+}
+
+.study-table {
+  width: 100%;
+  max-width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  text-align: left;
+  table-layout: auto;
+  box-sizing: border-box;
+}
+
+.study-table th {
+  background: var(--accent-navy-soft);
+  color: var(--text-main);
+  font-family: var(--font-ui);
+  font-weight: 600;
+  font-size: 0.84rem;
+  letter-spacing: 0.03em;
+  padding: var(--space-3) var(--space-4);
+  border-bottom: 2px solid var(--border-subtle);
+  word-break: break-word;
+  overflow-wrap: anywhere;
+  hyphens: auto;
+  box-sizing: border-box;
+}
+
+.study-table td {
+  padding: var(--space-3) var(--space-4);
+  border-bottom: 1px solid var(--border-subtle);
+  color: var(--text-main);
+  line-height: 1.55;
+  vertical-align: top;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+  hyphens: auto;
+  box-sizing: border-box;
+}
+
+.study-table tr:last-child td {
+  border-bottom: none;
+}
+
+.study-table tbody tr:nth-child(even) {
+  background: rgba(0, 0, 0, 0.015);
+}
+
+/* 4. NOTE (Eslatma va ogohlantirish) */
+.study-note {
+  border-radius: var(--radius-md);
+  padding: var(--space-4) var(--space-5);
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  margin: 18px 0;
+}
+
+.note-warning {
+  background: var(--accent-warn-bg);
+  border-left: 4px solid var(--accent-warn-border);
+  color: var(--accent-warn-text);
+}
+
+.note-tip {
+  background: var(--accent-tip-bg);
+  border-left: 4px solid var(--accent-tip-border);
+  color: var(--accent-tip-text);
+}
+
+.note-important {
+  background: var(--accent-navy-soft);
+  border-left: 4px solid var(--accent-gold);
+  color: var(--text-main);
+}
+
+.note-quote {
+  background: var(--bg-surface);
+  border-left: 3px solid var(--text-muted);
+  font-style: italic;
+  box-shadow: var(--shadow-card);
+}
+
+.note-icon {
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.note-content {
+  flex: 1;
+}
+
+.note-title {
+  font-family: var(--font-ui);
+  font-size: 0.9rem;
+  font-weight: 700;
+  margin: 0 0 4px 0;
+  letter-spacing: 0.02em;
+}
+
+.note-text {
+  font-family: var(--font-body);
+  font-size: 0.96rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* 5. TEXT (Matn bloki) */
+.study-text {
+  font-family: var(--font-body);
+  font-size: 1.02rem;
+  line-height: 1.75;
+  color: var(--text-main);
+  margin-bottom: 16px;
+}
+
+.study-text-lead {
+  font-size: 1.15rem;
+  line-height: 1.8;
+  color: var(--text-main);
+  font-weight: 400;
+}
+
+/* 6. DEFINITION (Ta’rif) */
+.study-definition {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: var(--space-4) var(--space-5);
+  box-shadow: var(--shadow-card);
+  margin: 16px 0;
+}
+
+.def-term-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 6px;
+  flex-wrap: wrap;
+}
+
+.def-term {
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.def-source {
+  font-family: var(--font-ui);
+  font-size: 0.78rem;
+  font-style: italic;
+  color: var(--text-muted);
+}
+
+.def-body {
+  font-family: var(--font-body);
+  font-size: 0.98rem;
+  line-height: 1.65;
+  color: var(--text-main);
+  margin: 0;
+}
+
+/* 7. LIST (Ro‘yxat) */
+.study-list {
+  padding-left: var(--space-5);
+  margin: 16px 0;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--text-main);
+}
+
+.study-list-item {
+  margin-bottom: 6px;
+}
+
+/* 8. QA (Savol-Javob ko‘rinishi) */
+.qa-preview-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: var(--space-4) var(--space-5);
+  box-shadow: var(--shadow-card);
+  margin: 16px 0;
+}
+
+.qa-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: var(--font-ui);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--accent-gold);
+  background: var(--accent-gold-soft);
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-xs);
+  margin-bottom: 8px;
+}
+
+.qa-question {
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 10px;
+}
+
+.qa-answer-box {
+  background: var(--bg-subtle);
+  border-left: 3px solid var(--accent-gold);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-xs);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--text-main);
+}
+
+.qa-toggle-btn {
+  background: none;
+  border: 1px dashed var(--border-subtle);
+  padding: var(--space-2) var(--space-3);
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  cursor: pointer;
+  border-radius: var(--radius-xs);
+  transition: all 0.2s ease;
+}
+
+.qa-toggle-btn:hover {
+  background: var(--bg-subtle);
+  color: var(--text-main);
+}
+
+/* Inline markdown uslublari */
+.doc-bold {
+  font-weight: 700;
+  color: inherit;
+}
+
+.doc-italic {
+  font-style: italic;
+  color: inherit;
+}
+
+.doc-highlight {
+  background-color: rgba(158, 125, 59, 0.18);
+  color: inherit;
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-xs);
+}
+
+/* 9. COMPARE (2-3 tushunchani qiyoslash) */
+.compare-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+  margin: 20px 0;
+}
+
+.compare-grid {
+  display: grid;
+  grid-template-columns: repeat(var(--col-count, 2), 1fr);
+  gap: 0;
+}
+
+@media screen and (max-width: 680px) {
+  .compare-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+.compare-column {
+  padding: var(--space-5) var(--space-5);
+  border-right: 1px solid var(--border-subtle);
+  display: flex;
+  flex-direction: column;
+}
+
+.compare-column:last-child {
+  border-right: none;
+}
+
+.compare-col-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding-bottom: var(--space-3);
+  margin-bottom: 14px;
+  border-bottom: 2px solid var(--accent-gold);
+}
+
+.compare-title-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.compare-icon {
+  color: var(--accent-gold);
+}
+
+.compare-col-title {
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin: 0;
+}
+
+.compare-badge {
+  font-family: var(--font-ui);
+  font-size: 0.72rem;
+  font-weight: 700;
+  background: var(--accent-gold-soft);
+  color: var(--accent-gold);
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-xs);
+  text-transform: uppercase;
+}
+
+.compare-points-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.compare-point-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: var(--text-main);
+}
+
+.compare-check-icon {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--accent-tip-bg);
+  color: var(--accent-tip-text);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 3px;
+}
+
+/* 10. FLOW (Protsessual bosqichlar) */
+.flow-container {
+  margin: var(--space-2) 0;
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+
+.flow-title-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-bottom: var(--space-2);
+}
+
+.flow-title-badge {
+  font-family: var(--font-ui);
+  font-size: var(--font-size-xs, 0.72rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: var(--space-1) var(--space-2);
+  background: rgba(217, 119, 6, 0.12);
+  color: var(--accent-gold);
+  border-radius: var(--radius-xs);
+}
+
+.flow-title-text {
+  font-family: var(--font-ui);
+  font-size: var(--font-size-sm, 0.92rem);
+  font-weight: 700;
+  color: var(--text-main);
+  line-height: 1.35;
+}
+
+.flow-chain-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 8px;
+  overflow: visible;
+  line-height: 1.4;
+}
+
+.flow-chain-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-left: 3px solid var(--accent-gold);
+  border-radius: var(--radius-sm, 4px);
+  padding: var(--space-1) var(--space-2);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+  white-space: normal;
+  word-break: normal;
+  overflow: visible;
+}
+
+.flow-step-num {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: var(--on-accent);
+  font-family: var(--font-ui);
+  font-size: 0.72rem;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.flow-chain-text {
+  font-family: var(--font-ui);
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-main);
+  white-space: normal;
+}
+
+.flow-chain-separator {
+  color: var(--accent-gold);
+  font-size: 1rem;
+  font-weight: 700;
+  user-select: none;
+  flex-shrink: 0;
+}
+
+.flow-vertical-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  border-left: 2px solid var(--accent-gold);
+  padding-left: var(--space-3);
+  margin: 4px 0;
+}
+
+.flow-vertical-item {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.flow-vertical-body {
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+
+.flow-arrow-mobile {
+  display: none;
+}
+
+/* 11. TIMELINE (Xronologik zanjir) */
+.timeline-container {
+  position: relative;
+  margin: 24px 0 24px 8px;
+  padding-left: var(--space-6);
+}
+
+.timeline-spine {
+  position: absolute;
+  top: 10px;
+  bottom: 10px;
+  left: 6px;
+  width: 2px;
+  background: var(--border-subtle);
+}
+
+.timeline-events-list {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.timeline-event-item {
+  position: relative;
+}
+
+.timeline-marker {
+  position: absolute;
+  left: -28px;
+  top: 4px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--bg-page);
+  border: 2px solid var(--accent-gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.timeline-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent-gold);
+}
+
+.timeline-event-body {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: var(--space-3) var(--space-4);
+  box-shadow: var(--shadow-card);
+}
+
+.timeline-date-badge {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-ui);
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: var(--accent-navy);
+  background: var(--accent-navy-soft);
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-xs);
+  margin-bottom: 6px;
+}
+
+.timeline-event-title {
+  font-family: var(--font-heading);
+  font-size: 1.02rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin: 0 0 6px 0;
+}
+
+.timeline-event-desc {
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--text-muted);
+  margin: 0;
+}

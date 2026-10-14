@@ -1,0 +1,298 @@
+/* ==========================================================================
+   YURIST STUDIO — YAGONA SEMANTIK DIZAYN TIZIMI VA TOKENLAR
+   Yo‘nalish: "Quiet luxury, legal editorial" — Oliyjanob kitobiy aniqlik
+   ========================================================================== */
+
+:root,
+[data-ui-theme='light'] {
+  /* 1. ILOVA INTERFEYSI (UI CHROME) TOKENLARI — YORUG‘ REJIM */
+  --bg: #F7F5F1;
+  --surface: #FFFFFF;
+  --surface-2: #FAF8F5;
+  --paper: #FAF8F5;
+
+  --ink: #1C2430;
+  --ink-2: #5C6470;
+  --ink-3: #5E6775;
+
+  --line: #E3D9CC;
+  --line-soft: #EEE7DD;
+
+  --accent: #1B2A4A;          /* Oxford Navy — yagona to'ldirilgan asosiy rang */
+  --accent-hover: #24375F;
+  --accent-active: #142038;
+  --on-accent: #FFFFFF;
+  --accent-soft: rgba(27, 42, 74, 0.06);
+
+  --bronze: #9E7D3B;          /* Chiziqlar, hoshiyalar, sarlavha va dekoratsiyalar */
+  --bronze-text: #7A5F2A;     /* Kichik matnlar uchun yuqori kontrast (>=4.5:1) */
+  --bronze-soft: #F5EFE4;
+
+  --success: #3F7A55;
+  --success-bg: #EDF5F0;
+  --success-border: #9DC3AC;
+
+  --warning: #9A6B1F;
+  --warning-bg: #FBF6EB;
+  --warning-border: #DCBF87;
+
+  --danger: #B3564D;
+  --danger-bg: #FDF2F0;
+  --danger-border: #E8A8A1;
+
+  --focus: 0 0 0 2px #FFFFFF, 0 0 0 4px var(--accent);
+
+  /* 7 ta Vizual Matn Rang Tokenlari (WCAG AA >= 4.5:1) */
+  --style-color-accent: #1B2A4A;
+  --style-color-teal: #0f766e;
+  --style-color-amber: #92400e;
+  --style-color-crimson: #b91c1c;
+  --style-color-emerald: #047857;
+  --style-color-slate: #334155;
+  --style-color-purple: #6b21a8;
+
+  /* Moslik uchun eski o‘zgaruvchilar (Legacy Aliases) */
+  --bg-app: var(--bg);
+  --bg-sidebar: var(--surface);
+  --bg-surface: var(--surface);
+  --bg-canvas: var(--bg);
+  --bg-subtle: var(--surface-2);
+  --bg-hover: var(--surface-2);
+
+  --text-main: var(--ink);
+  --text-muted: var(--ink-2);
+  --text-editor: var(--ink);
+  --text-navy: var(--accent);
+  --text-light: var(--ink-3);
+  --text-faint: var(--ink-3);
+
+  --border-color: var(--line);
+  --border-light: var(--line-soft);
+  --border-dark: var(--line);
+  --border-subtle: var(--line);
+
+  --accent-gold: var(--bronze);
+  --accent-gold-soft: var(--bronze-soft);
+  --accent-navy: var(--accent);
+  --accent-navy-soft: rgba(27, 42, 74, 0.05);
+
+  --accent-warn-border: var(--warning-border);
+  --accent-warn-bg: var(--warning-bg);
+  --accent-warn-text: var(--warning);
+
+  --accent-tip-border: var(--bronze);
+  --accent-tip-bg: var(--bronze-soft);
+  --accent-tip-text: var(--bronze-text);
+
+  /* 2. BO‘SHLIQLAR (STRICT 4px SCALE) */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --space-30: 120px;
+
+  /* 3. BURCHAK RADIUSI (UI RADII) */
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-pill: 9999px;
+  --radius-card-canvas: 36px;
+
+  /* 4. SOYA VA KO‘TARILISH (WARM ELEVATION SCALE) */
+  --elevation-0: none;
+  --elevation-1: 0 1px 3px rgba(44, 34, 22, 0.06);
+  --elevation-2: 0 4px 16px rgba(44, 34, 22, 0.08);
+  --elevation-3: 0 8px 24px rgba(44, 34, 22, 0.10);
+  --elevation-4: 0 12px 36px rgba(44, 34, 22, 0.12);
+
+  --shadow-sm: var(--elevation-1);
+  --shadow-md: var(--elevation-2);
+  --shadow-lg: var(--elevation-4);
+  --shadow-page: var(--elevation-3);
+  --shadow-card: var(--elevation-1);
+
+  /* 5. ANIMATSIYA VA HARAKAT */
+  --motion-fast: 150ms cubic-bezier(0.16, 1, 0.3, 1);
+  --motion-normal: 200ms cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* 6. UI TYPE SCALE */
+  --ui-font-size-11: 11px;
+  --ui-font-size-12: 12px;
+  --ui-font-size-13: 13px;
+  --ui-font-size-14: 14px;
+  --ui-font-size-16: 16px;
+  --ui-font-size-18: 18px;
+  --ui-font-size-20: 20px;
+
+  /* 7. KARTA KANVASNING O‘LCHOV TOKENLARI (1080x1920 CANVAS SCALE) */
+  --canvas-font-hero: 64px;
+  --canvas-font-h1: 48px;
+  --canvas-font-h2: 36px;
+  --canvas-font-body: 32px;
+  --canvas-font-caption: 26px;
+  --canvas-font-badge: 26px;
+}
+
+
+/* ==========================================================================
+   HUJJAT USLUBLARI (DOCUMENT STYLES) — FAQAT O‘QUV KARTOCHKALARI UCHUN
+   Classic, Modern, Dark, Minimal — Barchasi bitta oliyjanob oila
+   ========================================================================== */
+
+/* 1. CLASSIC (Mumtoz — iliq qog‘oz, bronza, nafis serif) */
+[data-document-theme='classic'],
+.doc-theme-classic {
+  --doc-bg: #FAF8F5;
+  --doc-surface: #FAF8F5;
+  --doc-ink: #1C2430;
+  --doc-ink-2: #5C6470;
+  --doc-border: #E3D9CC;
+  --doc-accent: #1B2A4A;
+  --doc-bronze: #9E7D3B;
+  --doc-bronze-text: #7A5F2A;
+  --doc-bronze-soft: #F4EEE2;
+  --doc-font-heading: var(--font-serif);
+  --doc-font-body: var(--font-sans);
+  --doc-font-ui: var(--font-sans);
+  --doc-shadow: 0 10px 30px rgba(44, 34, 22, 0.08), 0 1px 3px rgba(44, 34, 22, 0.04);
+
+  --bg-page: var(--doc-bg);
+  --bg-surface: var(--doc-surface);
+  --text-main: var(--doc-ink);
+  --text-muted: var(--doc-ink-2);
+  --text-navy: var(--doc-accent);
+  --text-light: var(--doc-ink-2);
+  --border-subtle: var(--doc-border);
+  --shadow-page: var(--doc-shadow);
+  --font-heading: var(--doc-font-heading);
+  --font-body: var(--doc-font-body);
+}
+
+/* 2. MODERN (Zamonaviy — toza neytral oq qog‘oz, to‘q navy urg‘u, nafis sans-serif) */
+[data-document-theme='modern'],
+.doc-theme-modern {
+  --doc-bg: #FFFFFF;
+  --doc-surface: #FFFFFF;
+  --doc-ink: #1C2430;
+  --doc-ink-2: #5C6470;
+  --doc-border: #E2E8F0;
+  --doc-accent: #1B2A4A;
+  --doc-bronze: #9E7D3B;
+  --doc-bronze-text: #7A5F2A;
+  --doc-bronze-soft: #F1F5F9;
+  --doc-font-heading: var(--font-sans);
+  --doc-font-body: var(--font-sans);
+  --doc-font-ui: var(--font-sans);
+  --doc-shadow: 0 10px 30px rgba(15, 23, 42, 0.06), 0 1px 3px rgba(15, 23, 42, 0.03);
+
+  --bg-page: var(--doc-bg);
+  --bg-surface: var(--doc-surface);
+  --text-main: var(--doc-ink);
+  --text-muted: var(--doc-ink-2);
+  --text-navy: var(--doc-accent);
+  --text-light: var(--doc-ink-2);
+  --border-subtle: var(--doc-border);
+  --shadow-page: var(--doc-shadow);
+  --font-heading: var(--doc-font-heading);
+  --font-body: var(--doc-font-body);
+}
+
+
+/* 4. MINIMAL (Ixcham — faqat nozik chiziqlar, maksimal bo‘shliq, tinch kulrang) */
+[data-document-theme='minimal'],
+.doc-theme-minimal {
+  --doc-bg: #FFFFFF;
+  --doc-surface: #FFFFFF;
+  --doc-ink: #1C2430;
+  --doc-ink-2: #5C6470;
+  --doc-border: #E0DDD7;
+  --doc-accent: #1C2430;
+  --doc-bronze: #7A5F2A;
+  --doc-bronze-text: #7A5F2A;
+  --doc-bronze-soft: #F7F5F1;
+  --doc-font-heading: var(--font-serif);
+  --doc-font-body: var(--font-serif);
+  --doc-font-ui: var(--font-sans);
+  --doc-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+
+  --bg-page: var(--doc-bg);
+  --bg-surface: var(--doc-surface);
+  --text-main: var(--doc-ink);
+  --text-muted: var(--doc-ink-2);
+  --text-navy: var(--doc-accent);
+  --text-light: var(--doc-ink-2);
+  --border-subtle: var(--doc-border);
+  --shadow-page: var(--doc-shadow);
+  --font-heading: var(--doc-font-heading);
+  --font-body: var(--doc-font-body);
+}
+
+/* ==========================================================================
+   CHOP ETISH (PRINT / PDF) — PRIMARY: A4 PORTRAIT (210mm x 297mm)
+   Native CSS fragmentation, compact blocks, print-grade margins
+   ========================================================================== */
+@page {
+  size: A4 portrait;
+  margin: 0;
+}
+
+@media screen {
+  .print-export-host {
+    position: fixed !important;
+    left: -99999px !important;
+    top: 0 !important;
+    width: 210mm !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    z-index: -9999 !important;
+  }
+}
+
+@media print {
+  html,
+  body,
+  #root,
+  .app-container {
+    width: 100% !important;
+    height: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #ffffff !important;
+    color: #000000 !important;
+    display: block !important;
+    overflow: visible !important;
+  }
+
+  /* Ekranga tegishli barcha elementlarni yashirish */
+  .no-print,
+  .app-navbar,
+  .editor-column,
+  .preview-column,
+  .workspace-container,
+  .sidebar-container,
+  .card-nav-floating,
+  .toast-notice,
+  .undo-toast-notice,
+  .fullscreen-presentation-overlay,
+  .sidebar-backdrop {
+    display: none !important;
+  }
+
+  /* Faqat Mustaqil Eksport Host chop etiladi */
+  .print-export-host {
+    display: block !important;
+    position: static !important;
+    width: 100% !important;
+    background: #ffffff !important;
+    overflow: visible !important;
+  }
+}

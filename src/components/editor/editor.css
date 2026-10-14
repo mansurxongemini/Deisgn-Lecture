@@ -1,0 +1,1395 @@
+/* =============================================================================
+   YURIST STUDIO — CALM WRITING STUDIO EDITOR (Task 9)
+   Light warm background, ink text, 14px base, line-height 1.65,
+   word wrap ON, correct line numbers with wrapping, gentle MD+ syntax
+   highlighting (headings navy, metadata bronze, markers medium-navy, tables muted,
+   errors soft red underline), active line subtle tint, navy caret,
+   ghost toolbar buttons, and compact status bar.
+   Strictly tokenized (0 hardcoded hex, font-size, padding, radius).
+   ============================================================================= */
+
+/* Muharrir asosiy paneli */
+.editor-pane {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: var(--editor-bg, var(--paper));
+  color: var(--editor-ink, var(--ink));
+  border-right: 1px solid var(--line);
+  box-sizing: border-box;
+  overflow: hidden;
+  position: relative;
+}
+
+/* -----------------------------------------------------------------------------
+   TOOLBAR: Faqat "Blok qo'shish", "Namuna", "Qidirish", "Qo'llanma" + "..."
+   Ghost tugmalar, yagona balandlik (32px), aniq tekislangan
+   ----------------------------------------------------------------------------- */
+.editor-toolbar {
+  padding: 0 var(--space-4);
+  height: 48px;
+  min-height: 48px;
+  background: var(--editor-bg, var(--paper));
+  border-bottom: 1px solid var(--line-soft);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  box-sizing: border-box;
+  flex-shrink: 0;
+  user-select: none;
+}
+
+.editor-toolbar-title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-family: var(--font-sans);
+  font-size: var(--ui-font-size-13);
+  font-weight: 600;
+  color: var(--accent);
+  white-space: nowrap;
+}
+
+.editor-title-icon {
+  color: var(--bronze-text);
+}
+
+.editor-title-text {
+  letter-spacing: -0.01em;
+}
+
+.editor-badge-pill {
+  font-size: var(--ui-font-size-11);
+  font-weight: 700;
+  background: var(--bronze-soft);
+  color: var(--bronze-text);
+  border: 1px solid var(--line-soft);
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-pill);
+  letter-spacing: 0.05em;
+}
+
+.editor-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  overflow: visible;
+}
+
+.editor-btn-wrapper {
+  position: relative;
+  display: inline-flex;
+}
+
+/* Ghost Tugmalar — Bir xil balandlik (32px), nozik uslub */
+.editor-ghost-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  height: 32px;
+  padding: 0 var(--space-3);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-sans);
+  font-size: var(--ui-font-size-12);
+  font-weight: 500;
+  cursor: pointer;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--editor-ink, var(--ink));
+  transition: all var(--motion-fast);
+  user-select: none;
+  white-space: nowrap;
+  box-sizing: border-box;
+}
+
+.editor-ghost-btn:hover {
+  background: var(--accent-soft);
+  border-color: var(--line-soft);
+  color: var(--accent);
+}
+
+.editor-ghost-btn:active {
+  transform: scale(0.97);
+}
+
+.editor-ghost-btn.active {
+  background: var(--accent-soft);
+  border-color: var(--line);
+  color: var(--accent);
+}
+
+.editor-ghost-btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+.editor-btn-label-short {
+  display: none;
+}
+
+.editor-overflow-btn {
+  padding: 0 var(--space-2);
+}
+
+/* Popover Ochiluvchi Menyu */
+.editor-dropdown-popover {
+  position: absolute;
+  top: calc(100% + var(--space-2));
+  z-index: 1000;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  padding: var(--space-2);
+  animation: dropdownFadeIn var(--motion-fast) cubic-bezier(0.16, 1, 0.3, 1);
+  box-sizing: border-box;
+}
+
+@keyframes dropdownFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.block-picker-popover {
+  left: 0;
+  width: 270px;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.overflow-popover {
+  right: 0;
+  min-width: 230px;
+}
+
+.dropdown-section-title {
+  font-size: var(--ui-font-size-10);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ink-3);
+  padding: var(--space-2) var(--space-3) var(--space-1) var(--space-3);
+}
+
+.editor-dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  width: 100%;
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-sm);
+  border: none;
+  background: transparent;
+  color: var(--ink);
+  font-size: var(--ui-font-size-13);
+  font-family: var(--font-sans);
+  text-align: left;
+  cursor: pointer;
+  transition: background var(--motion-fast), color var(--motion-fast);
+  box-sizing: border-box;
+}
+
+.editor-dropdown-item:hover {
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.dropdown-item-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.dropdown-item-name {
+  font-weight: 600;
+  font-size: var(--ui-font-size-12);
+}
+
+.dropdown-item-desc {
+  font-size: var(--ui-font-size-11);
+  color: var(--ink-2);
+}
+
+/* JSON Banner */
+.editor-json-banner {
+  background: var(--warning-bg);
+  border-bottom: 1px solid var(--warning-border);
+  padding: var(--space-2) var(--space-4);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  box-sizing: border-box;
+}
+
+.editor-json-banner-text {
+  font-size: var(--ui-font-size-12);
+  color: var(--warning);
+}
+
+/* -----------------------------------------------------------------------------
+   MUHARRIR MAYDONI VA QATOR RAQAMLARI (GUTTER)
+   Word wrap yoqilganda qator raqamlari qat‘iy mos kelishi
+   ----------------------------------------------------------------------------- */
+.editor-textarea-wrapper {
+  flex: 1;
+  position: relative;
+  display: flex;
+  overflow: hidden;
+  background: var(--editor-bg, var(--paper));
+}
+
+.editor-line-numbers {
+  width: 54px;
+  min-width: 54px;
+  max-width: 54px;
+  background: var(--surface-2);
+  color: var(--ink-3);
+  border-right: 1px solid var(--line-soft);
+  font-family: var(--font-mono);
+  font-size: var(--editor-font-size, 14px);
+  line-height: var(--editor-line-height, 1.65);
+  padding: var(--space-4) 0;
+  user-select: none;
+  box-sizing: border-box;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.editor-gutter-line {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  padding-right: var(--space-3);
+  box-sizing: border-box;
+  min-height: calc(1em * var(--editor-line-height, 1.65));
+  line-height: var(--editor-line-height, 1.65);
+  transition: color var(--motion-fast);
+}
+
+.editor-gutter-line.active {
+  color: var(--accent);
+  font-weight: 700;
+  background: var(--accent-soft);
+}
+
+.editor-gutter-line.jump-flash {
+  background: color-mix(in srgb, var(--accent) 25%, transparent) !important;
+  color: var(--accent) !important;
+  font-weight: 800 !important;
+  animation: editorGutterJumpPulse 1.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes editorGutterJumpPulse {
+  0% {
+    background: color-mix(in srgb, var(--accent) 40%, transparent);
+    color: var(--accent);
+  }
+  60% {
+    background: color-mix(in srgb, var(--accent) 20%, transparent);
+  }
+  100% {
+    background: transparent;
+  }
+}
+
+.editor-gutter-num {
+  font-variant-numeric: tabular-nums;
+  line-height: var(--editor-line-height, 1.65);
+}
+
+/* Muharrir kontent maydoni */
+.editor-content-area {
+  flex: 1;
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* Orqa fon sintaksis qatlami (Backdrop layer) — textarea bilan bir xil scrollbar va padding */
+.editor-backdrop {
+  position: absolute;
+  inset: 0;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  pointer-events: none;
+  z-index: 1;
+  padding: var(--space-4) var(--space-5);
+  box-sizing: border-box;
+  scrollbar-color: transparent transparent;
+  scrollbar-width: thin;
+}
+
+.editor-backdrop::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.editor-backdrop::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.editor-backdrop::-webkit-scrollbar-thumb {
+  background: transparent;
+}
+
+.editor-highlight-layer {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-mono);
+  font-size: var(--editor-font-size, 14px);
+  line-height: var(--editor-line-height, 1.65);
+  white-space: pre-wrap;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  tab-size: 2;
+  color: var(--editor-ink, var(--ink));
+  letter-spacing: 0;
+  word-spacing: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.editor-highlight-layer.nowrap {
+  white-space: pre;
+}
+
+.editor-backdrop-line {
+  box-sizing: border-box;
+  min-height: calc(1em * var(--editor-line-height, 1.65));
+  line-height: var(--editor-line-height, 1.65);
+  white-space: pre-wrap;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  transition: background var(--motion-fast);
+}
+
+.editor-backdrop-line.active {
+  background: var(--accent-soft);
+  border-radius: var(--radius-xs);
+}
+
+.editor-backdrop-line.jump-flash {
+  background: color-mix(in srgb, var(--accent) 15%, transparent) !important;
+  border-left: 3px solid var(--accent) !important;
+  border-radius: 0 var(--radius-xs) var(--radius-xs) 0;
+  animation: editorBackdropJumpPulse 1.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes editorBackdropJumpPulse {
+  0% {
+    background: color-mix(in srgb, var(--accent) 35%, transparent);
+    border-left-color: var(--accent);
+  }
+  60% {
+    background: color-mix(in srgb, var(--accent) 15%, transparent);
+    border-left-color: var(--accent);
+  }
+  100% {
+    background: transparent;
+    border-left-color: transparent;
+  }
+}
+
+/* Oldingi matn kiritish maydoni (Textarea) */
+.editor-textarea {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: var(--space-4) var(--space-5);
+  border: none;
+  outline: none;
+  resize: none;
+  font-family: var(--font-mono);
+  font-size: var(--editor-font-size, 14px);
+  line-height: var(--editor-line-height, 1.65);
+  white-space: pre-wrap;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  tab-size: 2;
+  letter-spacing: 0;
+  word-spacing: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: transparent;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  caret-color: var(--accent);
+  z-index: 2;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  box-sizing: border-box;
+  scrollbar-width: thin;
+  scrollbar-color: var(--line) transparent;
+}
+
+.editor-textarea::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.editor-textarea::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.editor-textarea::-webkit-scrollbar-thumb {
+  background: var(--line);
+  border-radius: var(--radius-xs);
+}
+
+.editor-textarea.nowrap {
+  white-space: pre;
+  overflow-x: auto;
+}
+
+.editor-textarea::selection {
+  background: rgba(27, 42, 74, 0.2);
+  color: var(--accent);
+  -webkit-text-fill-color: var(--accent);
+}
+
+/* -----------------------------------------------------------------------------
+   GENTLE MD+ SYNTAX HIGHLIGHTING (No Neon, Calm Writing Studio)
+   ----------------------------------------------------------------------------- */
+.hl-heading {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.hl-heading-hash {
+  color: var(--ink-3);
+  font-weight: 500;
+  opacity: 0.7;
+}
+
+.hl-heading-text {
+  color: var(--accent);
+}
+
+.hl-metadata {
+  color: var(--bronze-text);
+}
+
+.hl-metadata-key {
+  color: var(--bronze-text);
+  font-weight: 600;
+}
+
+.hl-metadata-val {
+  color: var(--bronze);
+}
+
+.hl-block-marker {
+  color: var(--ink-2);
+  font-weight: 500;
+  background: var(--surface-2);
+  border-radius: var(--radius-xs);
+  padding: 0 var(--space-1);
+}
+
+.hl-table {
+  color: var(--ink-2);
+  font-weight: 500;
+}
+
+.hl-error {
+  text-decoration: underline wavy var(--danger);
+  text-underline-offset: 3px;
+}
+
+.hl-body {
+  color: var(--editor-ink, var(--ink));
+}
+
+.hl-bold {
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.hl-italic {
+  font-style: italic;
+}
+
+.hl-mark {
+  background: var(--warning-bg);
+  color: inherit;
+  border-radius: var(--radius-xs);
+  padding: 0;
+  margin: 0;
+}
+
+.hl-code {
+  background: var(--surface-2);
+  color: var(--ink);
+  border-radius: var(--radius-xs);
+  padding: 0;
+  margin: 0;
+  font-family: inherit;
+}
+
+/* -----------------------------------------------------------------------------
+   STATUS BAR: Validatsiya holati, qator/belgi/so'z — ixcham, samimiy
+   ----------------------------------------------------------------------------- */
+.editor-status-bar {
+  height: 30px;
+  min-height: 30px;
+  padding: 0 var(--space-4);
+  background: var(--editor-bg, var(--paper));
+  border-top: 1px solid var(--line-soft);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: var(--font-sans);
+  font-size: var(--ui-font-size-11);
+  color: var(--ink-2);
+  box-sizing: border-box;
+  flex-shrink: 0;
+  user-select: none;
+}
+
+.editor-status-left {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.status-val-ok {
+  color: var(--success);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-weight: 500;
+}
+
+.status-val-warn {
+  color: var(--warning);
+  background: var(--warning-bg);
+  border: 1px solid var(--warning-border);
+  min-height: 28px;
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-pill);
+  font-size: var(--ui-font-size-11);
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  cursor: pointer;
+  transition: all var(--motion-fast);
+}
+
+.status-val-warn:hover {
+  background: var(--warning-border);
+}
+
+.editor-status-right {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-variant-numeric: tabular-nums;
+}
+
+.status-stat-item {
+  color: var(--ink-2);
+}
+
+.status-stat-pos-short {
+  display: none;
+}
+
+.status-stat-pos-full {
+  display: inline;
+}
+
+.status-stat-sep {
+  color: var(--ink-3);
+  font-size: var(--ui-font-size-10);
+}
+
+/* Formatlash tugmalari guruhi */
+.editor-format-group {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.editor-format-btn {
+  padding: 0 var(--space-2) !important;
+  font-weight: 700;
+}
+
+/* Zoom nazorati pill */
+.editor-zoom-group {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  background: var(--surface);
+  border: 1px solid var(--line-soft);
+  border-radius: var(--radius-sm);
+  padding: 0 var(--space-1);
+}
+
+.editor-zoom-btn {
+  background: transparent;
+  border: none;
+  color: var(--ink-2);
+  min-width: 28px;
+  min-height: 28px;
+  padding: 0 var(--space-1);
+  border-radius: var(--radius-xs);
+  cursor: pointer;
+  font-size: var(--ui-font-size-11);
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--motion-fast);
+}
+
+.editor-zoom-btn:hover {
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.editor-zoom-label {
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  font-size: var(--ui-font-size-11);
+  font-weight: 600;
+  color: var(--accent);
+  padding: 0 var(--space-1);
+  cursor: pointer;
+}
+
+/* Modal va Dialog oynalar */
+.editor-modal-backdrop,
+.editor-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: 100vw;
+  max-height: 100dvh;
+  background: rgba(15, 23, 42, 0.55);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-4);
+  margin: 0;
+  box-sizing: border-box;
+  z-index: 10000;
+  overflow-y: auto;
+  animation: fadeIn var(--motion-fast) ease-out;
+}
+
+.editor-modal-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 20px 45px -10px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(0, 0, 0, 0.05);
+  width: 100%;
+  max-width: 600px;
+  max-height: min(88vh, calc(100dvh - var(--space-8)));
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  margin: auto;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.editor-modal-header {
+  padding: var(--space-3) var(--space-4);
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.editor-modal-title {
+  font-size: var(--ui-font-size-14);
+  font-weight: 600;
+  color: var(--ink);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.editor-modal-close {
+  border: none;
+  background: none;
+  color: var(--ink-2);
+  cursor: pointer;
+  min-width: 28px;
+  min-height: 28px;
+  padding: var(--space-1);
+  border-radius: var(--radius-xs);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.editor-modal-close:hover {
+  background: var(--surface-2);
+  color: var(--ink);
+}
+
+.editor-modal-body {
+  padding: var(--space-4);
+  overflow-y: auto;
+  flex: 1;
+}
+
+.editor-modal-footer {
+  padding: var(--space-3) var(--space-4);
+  border-top: 1px solid var(--line);
+  background: var(--surface-2);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--space-2);
+}
+
+/* -----------------------------------------------------------------------------
+   TASK 10: SLASH COMMANDS & BLOCK PICKER
+   Card white, radius 10px, shadow-md, 150ms fade, selected row navy-tinted
+   ----------------------------------------------------------------------------- */
+@keyframes slashMenuFade {
+  from {
+    opacity: 0;
+    transform: translateY(calc(var(--space-1) * -1));
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.slash-command-card {
+  background: var(--surface);
+  border: 1px solid var(--line-soft);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  width: 340px;
+  max-width: calc(100vw - var(--space-8));
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  animation: slashMenuFade var(--motion-fast) ease-out;
+  user-select: none;
+}
+
+.slash-command-card.floating {
+  position: absolute;
+  z-index: 100;
+}
+
+.slash-command-card.popover {
+  position: absolute;
+  top: calc(100% + var(--space-1));
+  left: 0;
+  z-index: 100;
+}
+
+.slash-search-bar {
+  padding: var(--space-2) var(--space-3);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  border-bottom: 1px solid var(--line-soft);
+  background: var(--surface-2);
+}
+
+.slash-search-icon {
+  color: var(--ink-2);
+  flex-shrink: 0;
+}
+
+.slash-search-input {
+  width: 100%;
+  border: none;
+  background: transparent;
+  font-family: var(--font-sans);
+  font-size: var(--ui-font-size-12);
+  color: var(--ink);
+  outline: none;
+}
+
+.slash-search-input::placeholder {
+  color: var(--ink-3);
+}
+
+.slash-section-header {
+  padding: var(--space-2) var(--space-3);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--line-soft);
+  font-size: var(--ui-font-size-10);
+  font-weight: 700;
+  color: var(--ink-3);
+  letter-spacing: 0.06em;
+  background: var(--surface);
+}
+
+.slash-shortcut-hint {
+  font-size: var(--ui-font-size-10);
+  font-weight: 500;
+  color: var(--ink-3);
+}
+
+.slash-command-list {
+  max-height: calc(8 * 48px);
+  overflow-y: auto;
+  padding: var(--space-1);
+}
+
+.slash-empty-state {
+  padding: var(--space-4);
+  text-align: center;
+  font-size: var(--ui-font-size-12);
+  color: var(--ink-2);
+}
+
+.slash-command-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: background var(--motion-fast), color var(--motion-fast);
+}
+
+.slash-command-row:hover,
+.slash-command-row.selected {
+  background: var(--accent-soft);
+}
+
+.slash-command-row.selected .slash-row-label {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.slash-row-icon-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-sm);
+  background: var(--surface-2);
+  color: var(--accent);
+  flex-shrink: 0;
+  transition: all var(--motion-fast);
+}
+
+.slash-command-row.selected .slash-row-icon-wrap {
+  background: var(--accent);
+  color: var(--surface);
+}
+
+.slash-row-info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  overflow: hidden;
+  flex: 1;
+}
+
+.slash-row-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+.slash-row-label {
+  font-size: var(--ui-font-size-13);
+  font-weight: 500;
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+.slash-row-command {
+  font-family: var(--font-mono);
+  font-size: var(--ui-font-size-11);
+  color: var(--ink-2);
+  background: var(--surface-2);
+  padding: 0 var(--space-1);
+  border-radius: var(--radius-xs);
+}
+
+.slash-row-desc {
+  font-size: var(--ui-font-size-11);
+  color: var(--ink-2);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* -----------------------------------------------------------------------------
+   SAMPLE PICKER MODAL (Part 4)
+   ----------------------------------------------------------------------------- */
+.sample-picker-modal {
+  max-width: 680px;
+  width: min(680px, calc(100vw - var(--space-8)));
+  margin: auto;
+}
+
+.editor-modal-title-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.editor-modal-subtitle {
+  margin: 0;
+  font-size: var(--ui-font-size-12);
+  color: var(--ink-2);
+}
+
+.editor-modal-close-btn {
+  border: none;
+  background: transparent;
+  color: var(--ink-2);
+  cursor: pointer;
+  padding: var(--space-1);
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--motion-fast);
+}
+
+.editor-modal-close-btn:hover {
+  background: var(--surface-2);
+  color: var(--ink);
+}
+
+.sample-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+  gap: var(--space-3);
+  padding: var(--space-4);
+  max-height: calc(85vh - 120px);
+  overflow-y: auto;
+}
+
+/* Cheat Sheet Modal Styles */
+.cheat-sheet-modal {
+  max-width: 760px;
+  width: 100%;
+}
+
+.cheat-sheet-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  background: var(--surface-2);
+  border-bottom: 1px solid var(--line-soft);
+}
+
+.cheat-sheet-search {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  background: var(--surface);
+  border: 1px solid var(--line-soft);
+  border-radius: var(--radius-md);
+  padding: var(--space-1) var(--space-3);
+  flex: 1;
+  max-width: 300px;
+}
+
+.cheat-sheet-search input {
+  border: none;
+  background: transparent;
+  outline: none;
+  font-size: var(--ui-font-size-12);
+  color: var(--ink);
+  width: 100%;
+}
+
+.cheat-copy-all-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-1) var(--space-3);
+  font-size: var(--ui-font-size-12);
+  font-weight: 500;
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  border: 1px solid var(--line-soft);
+  color: var(--ink);
+  cursor: pointer;
+  transition: all var(--motion-fast);
+}
+
+.cheat-copy-all-btn:hover {
+  background: var(--surface-2);
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.cheat-sheet-body {
+  padding: var(--space-4);
+  overflow-y: auto;
+  max-height: calc(85vh - 140px);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.cheat-card {
+  background: var(--surface);
+  border: 1px solid var(--line-soft);
+  border-radius: var(--radius-md);
+  padding: var(--space-3);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  transition: border-color var(--motion-fast), box-shadow var(--motion-fast);
+}
+
+.cheat-card:hover {
+  border-color: var(--line);
+  box-shadow: var(--shadow-sm);
+}
+
+.cheat-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+.cheat-card-title-group {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.cheat-card-title {
+  font-size: var(--ui-font-size-13);
+  font-weight: 600;
+  color: var(--ink);
+  margin: 0;
+}
+
+.cheat-card-badge {
+  font-family: var(--font-mono, monospace);
+  font-size: var(--ui-font-size-11);
+  font-weight: 600;
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-xs);
+  background: var(--surface-2);
+  color: var(--accent);
+  border: 1px solid var(--line-soft);
+}
+
+.cheat-card-copy-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--line-soft);
+  background: transparent;
+  color: var(--ink-2);
+  font-size: var(--ui-font-size-11);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--motion-fast);
+}
+
+.cheat-card-copy-btn:hover {
+  background: var(--surface-2);
+  color: var(--ink);
+}
+
+.cheat-card-copy-btn.copied {
+  background: var(--success-bg);
+  color: var(--success);
+  border-color: var(--success-border);
+}
+
+.cheat-code-block {
+  margin: 0;
+  background: var(--surface-2);
+  color: var(--ink);
+  font-family: var(--font-mono, monospace);
+  font-size: var(--ui-font-size-12);
+  line-height: 1.55;
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--line-soft);
+  overflow-x: auto;
+  white-space: pre-wrap;
+  user-select: all;
+}
+
+.sample-picker-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  padding: var(--space-4);
+  background: var(--surface-2);
+  border: 1px solid var(--line-soft);
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  transition: all var(--motion-fast);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.sample-picker-card:hover {
+  border-color: var(--accent);
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
+  transform: translateY(calc(var(--space-1) * -0.5));
+}
+
+.sample-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: var(--space-2);
+}
+
+.sample-card-icon-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  color: var(--accent);
+  border: 1px solid var(--line-soft);
+}
+
+.sample-card-badge {
+  font-size: var(--ui-font-size-10);
+  font-weight: 700;
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-pill);
+  background: var(--accent-soft);
+  color: var(--accent);
+  letter-spacing: 0.04em;
+}
+
+.sample-card-title {
+  margin: 0 0 var(--space-1) 0;
+  font-size: var(--ui-font-size-14);
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.sample-card-desc {
+  margin: 0;
+  font-size: var(--ui-font-size-12);
+  color: var(--ink-2);
+  line-height: 1.45;
+}
+
+/* Sample confirm safety box */
+.sample-confirm-box {
+  padding: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.sample-confirm-icon-row {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+}
+
+.sample-confirm-icon-wrap {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  background: var(--warning-bg);
+  color: var(--warning);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.sample-confirm-title {
+  margin: 0 0 var(--space-1) 0;
+  font-size: var(--ui-font-size-15);
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.sample-confirm-desc {
+  margin: 0;
+  font-size: var(--ui-font-size-13);
+  color: var(--ink-2);
+  line-height: 1.5;
+}
+
+.sample-confirm-actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin-top: var(--space-2);
+}
+
+.sample-confirm-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  height: 40px;
+  border-radius: var(--radius-md);
+  font-size: var(--ui-font-size-13);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--motion-fast);
+}
+
+.sample-confirm-newdoc {
+  background: var(--accent);
+  color: var(--surface);
+  border: 1px solid var(--accent);
+}
+
+.sample-confirm-newdoc:hover {
+  opacity: 0.92;
+}
+
+.sample-confirm-replace {
+  background: var(--surface-2);
+  color: var(--destructive);
+  border: 1px solid var(--line);
+}
+
+.sample-confirm-replace:hover {
+  background: var(--destructive-bg);
+  border-color: var(--destructive);
+}
+
+.sample-confirm-cancel {
+  background: transparent;
+  color: var(--ink-2);
+  border: 1px solid transparent;
+}
+
+.sample-confirm-cancel:hover {
+  color: var(--ink);
+  background: var(--surface-2);
+}
+
+/* =============================================================================
+   RESPONSIVE MUHARRIR (Mobile & Small screens)
+   ============================================================================= */
+@media (max-width: 640px) {
+  .editor-toolbar {
+    padding: 0 var(--space-2);
+    gap: var(--space-1);
+    overflow: visible;
+    height: 44px;
+    min-height: 44px;
+    flex-shrink: 0;
+  }
+  .editor-toolbar-title {
+    display: none;
+  }
+  .editor-actions {
+    gap: var(--space-1);
+    width: 100%;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+  }
+  .editor-btn-label-full {
+    display: none;
+  }
+  .editor-btn-label-short {
+    display: inline;
+  }
+  .editor-ghost-btn,
+  .editor-btn,
+  .editor-format-btn,
+  .editor-overflow-btn {
+    flex-shrink: 0;
+    white-space: nowrap;
+    padding: 0 var(--space-2);
+    font-size: var(--ui-font-size-12);
+    height: 36px;
+    min-height: 36px;
+    min-width: 34px;
+    justify-content: center;
+  }
+  .editor-status-bar {
+    padding: 0 var(--space-2);
+    height: auto;
+    min-height: 28px;
+    font-size: var(--ui-font-size-11);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    overflow: hidden;
+    gap: var(--space-2);
+  }
+  .editor-status-left {
+    flex-shrink: 1;
+    min-width: 0;
+  }
+  .editor-status-left .status-val-ok span,
+  .editor-status-left .status-val-ok-text {
+    display: none;
+  }
+  .editor-status-right {
+    flex-shrink: 0;
+    gap: var(--space-1);
+    white-space: nowrap;
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+  }
+  .status-stat-pos {
+    flex-shrink: 0;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .status-stat-pos-short {
+    display: inline;
+  }
+  .status-stat-pos-full {
+    display: none;
+  }
+  .status-stat-sep-zoom {
+    display: none;
+  }
+  .status-stat-sep:nth-of-type(n+2),
+  .status-stat-item:nth-of-type(n+2) {
+    display: none;
+  }
+  .editor-zoom-group {
+    display: none;
+  }
+}

@@ -1,0 +1,413 @@
+/* Qo'llanma (Guide) sahifasi uchun zamonaviy va qulay uslublar */
+
+.guide-container {
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 64px);
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  padding: var(--space-6) var(--space-8) var(--space-16) var(--space-8);
+  box-sizing: border-box;
+  max-width: 1280px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* Yuqori sarlavha va qidiruv */
+.guide-header {
+  margin-bottom: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.guide-hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--space-5);
+  flex-wrap: wrap;
+}
+
+.guide-hero-title {
+  font-family: var(--font-serif);
+  font-size: var(--ui-font-size-24);
+  font-weight: 700;
+  margin: 0 0 var(--space-2) 0;
+  color: var(--ink);
+}
+
+.guide-hero-subtitle {
+  font-size: var(--ui-font-size-14);
+  color: var(--ink-2);
+  margin: 0;
+  max-width: 640px;
+  line-height: 1.5;
+}
+
+.guide-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--ink);
+  font-weight: 600;
+  font-size: var(--ui-font-size-13);
+  cursor: pointer;
+  transition: all var(--motion-normal);
+}
+
+.guide-back-btn:hover {
+  background: var(--surface-2);
+  border-color: var(--bronze);
+}
+
+/* Qidiruv qutisi */
+.guide-search-wrapper {
+  position: relative;
+  max-width: 600px;
+  width: 100%;
+}
+
+.guide-search-input {
+  width: 100%;
+  padding: var(--space-3) var(--space-4) var(--space-3) var(--space-10);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--ink);
+  font-size: var(--ui-font-size-14);
+  box-sizing: border-box;
+  outline: none;
+  transition: border-color var(--motion-normal), box-shadow var(--motion-normal);
+}
+
+.guide-search-input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+.guide-search-icon {
+  position: absolute;
+  left: var(--space-3);
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--ink-2);
+  pointer-events: none;
+}
+
+/* Navigatsiya teglari (Tablar) */
+.guide-tabs {
+  display: flex;
+  gap: var(--space-2);
+  overflow-x: auto;
+  padding-bottom: var(--space-2);
+  margin-bottom: var(--space-6);
+  border-bottom: 1px solid var(--line);
+}
+
+.guide-tab-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-pill);
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--ink-2);
+  font-weight: 600;
+  font-size: var(--ui-font-size-13);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all var(--motion-fast);
+}
+
+.guide-tab-btn:hover {
+  background: var(--surface-2);
+  color: var(--ink);
+}
+
+.guide-tab-btn.active {
+  background: var(--accent);
+  color: var(--on-accent);
+}
+
+/* Bo'lim kartochkalari */
+.guide-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-xl);
+  padding: var(--space-6);
+  margin-bottom: var(--space-6);
+  box-shadow: var(--shadow-sm);
+}
+
+.guide-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-4);
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+.guide-card-title {
+  font-family: var(--font-serif);
+  font-size: var(--ui-font-size-20);
+  font-weight: 700;
+  margin: 0;
+  color: var(--ink);
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+/* Yonma-yon (Split) namunaviy ko'rinish */
+.guide-split-preview {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-5);
+  margin-top: var(--space-4);
+  align-items: stretch;
+}
+
+@media (max-width: 860px) {
+  .guide-split-preview {
+    grid-template-columns: 1fr;
+  }
+}
+
+.guide-code-box {
+  background: var(--ink);
+  color: var(--paper);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+  font-family: var(--font-mono);
+  font-size: var(--ui-font-size-13);
+  line-height: 1.55;
+  overflow-x: auto;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.guide-code-box pre {
+  margin: 0;
+  white-space: pre-wrap;
+  flex: 1;
+}
+
+.guide-code-toolbar {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-2);
+  margin-top: var(--space-3);
+}
+
+.guide-rendered-box {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-shadow: var(--shadow-sm);
+}
+
+/* Xatolar va to'g'rilash (Common mistake) */
+.guide-mistake-box {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4);
+  margin-top: var(--space-4);
+  padding: var(--space-4);
+  background: var(--surface-2);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--line);
+}
+
+@media (max-width: 768px) {
+  .guide-mistake-box {
+    grid-template-columns: 1fr;
+  }
+}
+
+.guide-mistake-col {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.guide-badge-wrong {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-size: var(--ui-font-size-11);
+  font-weight: 700;
+  color: var(--danger);
+  background: var(--danger-bg);
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-xs);
+  width: fit-content;
+}
+
+.guide-badge-correct {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-size: var(--ui-font-size-11);
+  font-weight: 700;
+  color: var(--success);
+  background: var(--success-bg);
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-xs);
+  width: fit-content;
+}
+
+/* Mini interaktiv muharrir (Birinchi hujjatim) */
+.guide-walkthrough-container {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: var(--space-5);
+}
+
+@media (max-width: 900px) {
+  .guide-walkthrough-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+.guide-step-indicators {
+  display: flex;
+  gap: var(--space-2);
+  margin-bottom: var(--space-4);
+  flex-wrap: wrap;
+}
+
+.guide-step-dot {
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--line);
+  background: var(--surface);
+  font-size: var(--ui-font-size-12);
+  font-weight: 600;
+  cursor: pointer;
+  color: var(--ink-2);
+  transition: all var(--motion-fast);
+}
+
+.guide-step-dot.active {
+  background: var(--accent);
+  color: var(--on-accent);
+  border-color: var(--accent);
+}
+
+.guide-step-dot.completed {
+  background: var(--accent-soft);
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+/* FAQ va Ogohlantirishlar kartochkalari */
+.guide-faq-item,
+.guide-warn-item {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4) var(--space-5);
+  margin-bottom: var(--space-3);
+  background: var(--surface);
+  transition: border-color var(--motion-fast);
+}
+
+.guide-faq-item:hover,
+.guide-warn-item:hover {
+  border-color: var(--bronze);
+}
+
+.guide-faq-q {
+  font-size: var(--ui-font-size-16);
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: var(--space-2);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.guide-faq-a {
+  font-size: var(--ui-font-size-14);
+  line-height: 1.6;
+  color: var(--ink-2);
+  margin: 0;
+}
+
+/* Tugmalar */
+.guide-action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-sm);
+  font-size: var(--ui-font-size-12);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--motion-fast);
+  border: none;
+}
+
+.guide-action-primary {
+  background: var(--accent);
+  color: var(--on-accent);
+}
+
+.guide-action-primary:hover {
+  background: var(--accent-hover);
+}
+
+.guide-action-secondary {
+  background: var(--surface-2);
+  color: var(--ink);
+  border: 1px solid var(--line);
+}
+
+.guide-action-secondary:hover {
+  background: var(--surface);
+  border-color: var(--bronze);
+}
+
+@media (max-width: 768px) {
+  .guide-container {
+    padding: var(--space-4) var(--space-3) var(--space-12) var(--space-3);
+  }
+  .guide-hero-title {
+    font-size: var(--ui-font-size-20);
+  }
+  .guide-hero-subtitle {
+    font-size: var(--ui-font-size-13);
+  }
+  .guide-card {
+    padding: var(--space-4) var(--space-3);
+    border-radius: var(--radius-lg);
+    margin-bottom: var(--space-4);
+  }
+  .guide-card-title {
+    font-size: var(--ui-font-size-18);
+  }
+  .guide-split-preview {
+    grid-template-columns: 1fr;
+    gap: var(--space-3);
+  }
+  .guide-mistake-box {
+    grid-template-columns: 1fr;
+    gap: var(--space-3);
+    padding: var(--space-3);
+  }
+  .guide-walkthrough-container {
+    grid-template-columns: 1fr;
+  }
+}

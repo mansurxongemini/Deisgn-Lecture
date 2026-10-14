@@ -1,0 +1,23 @@
+/* Mahalliy shriftlar (hech qanday tashqi CDN yuklanmaydi) */
+@import '@fontsource/lora/400.css';
+@import '@fontsource/lora/500.css';
+@import '@fontsource/lora/600.css';
+@import '@fontsource/lora/700.css';
+@import '@fontsource/lora/400-italic.css';
+
+@import '@fontsource/inter/400.css';
+@import '@fontsource/inter/500.css';
+@import '@fontsource/inter/600.css';
+@import '@fontsource/inter/700.css';
+
+:root {
+  --font-serif: 'Lora', 'Source Serif 4', 'Newsreader', Georgia, 'Times New Roman', serif;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: ui-monospace, 'SFMono-Regular', 'Cascadia Code', 'Fira Code', Menlo, Monaco, Consolas, monospace;
+
+  /* Typographic metrics (Legal editorial standards) */
+  --preview-line-height: 1.7;
+  --preview-line-length: 70ch;
+  --editor-font-size: 14px;
+  --editor-line-height: 1.65;
+}
