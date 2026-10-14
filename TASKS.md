@@ -18,12 +18,13 @@
   - **Proof:** MD+, 4 xil ko'rish rejimi (A4, 9:16, Reader, Exam Trainer), OpenRouter Smart Ingestion, Apple HIG dizayni, test qamrovi va arxitektura to'liq yoritildi.
 - [x] 3. Production build, lint va testlarni qayta tekshirish (`npm run lint`, `npm test`, `npm run build`) <!-- id: prod-3 -->
   - **Status:** DONE
-  - **Proof:** `npm run lint` (0 xato), `npm test` (30/30 test fayl, 235/235 test muvaffaqiyatli), `npm run build` (tsc va vite production bundle xatosiz 470ms da qurildi).
 - [x] 4. O'zgarishlarni Git indexiga qo'shish va toza commit yaratish <!-- id: prod-4 -->
   - **Status:** DONE
   - **Proof:** Commit yaratildi: `293 files changed, 64212 insertions(+), 22 deletions(-)` (`feat: production-ready academic & legal lecture studio...`).
-- [/] 5. GitHub repository (`origin main`) ga `git push` qilish va tasdiqlash <!-- id: prod-5 -->
-  - **Status:** DOING
+- [x] 5. GitHub repository (`origin main`) ga `git push` qilish va tasdiqlash <!-- id: prod-5 -->
+  - **Status:** DONE
+  - **Proof:** `git push -u origin main` muvaffaqiyatli bajarildi (`c35951c`), GitHub repozitoriysi https://github.com/mansurxongemini/Deisgn-Lecture manzilida to'liq yangilandi.
+
 
 
 
